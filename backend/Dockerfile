@@ -25,5 +25,5 @@ RUN python backend/seed.py || echo "Database seeding skipped (will run at contai
 ENV PORT=8000
 EXPOSE 8000
 
-# Start uvicorn pointing to the backend package
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# use shell form so env var substitution works
+CMD ["sh","-c","uvicorn backend.main:app --host 0.0.0.0 --port ${PORT}"]
