@@ -16,70 +16,101 @@ export default function Canvas({ channelId = null, canvasId = null }) {
   const [savedCanvasId, setSavedCanvasId] = useState(canvasId)
   const [saving, setSaving] = useState(false)
   const [lastSaved, setLastSaved] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const hasLoadedRef = React.useRef(false)
 
   // Load existing canvas for this channel - runs on mount and when IDs change
   useEffect(() => {
-    console.log('Canvas: useEffect triggered', { channelId, canvasId })
+    console.log('=== Canvas: useEffect triggered ===', { channelId, canvasId, savedCanvasId })
     
     if (!channelId && !canvasId) {
       console.log('Canvas: No channelId or canvasId provided')
+      setIsLoading(false)
       return
     }
+    
+    setIsLoading(true)
+    
+    // Reset to fresh state for new channel/DM
+    setTitle('Your canvas title')
+    setLines([{ id: 1, text: 'Once upon a time...', isPlaceholder: true }])
+    setHasContent(false)
+    setSavedCanvasId(null)
     
     if (canvasId) {
       // Load specific canvas by ID
       console.log('Canvas: Loading by canvas ID', canvasId)
       api.get(`/api/canvas/${canvasId}`)
         .then(res => {
-          console.log('Canvas: Loaded canvas data', res.data)
+          console.log('✅ Canvas: Loaded canvas data', res.data)
           setSavedCanvasId(res.data.id)
           setTitle(res.data.title || 'Your canvas title')
           try {
             const content = JSON.parse(res.data.content)
-            console.log('Canvas: Parsed content', content)
+            console.log('✅ Canvas: Parsed content', content)
             if (Array.isArray(content) && content.length > 0) {
+              console.log('✅ Canvas: Setting lines to', content)
               setLines(content)
-              setHasContent(content.some(line => line.text && !line.isPlaceholder))
+              // Check if there's actual content (not just empty lines)
+              const hasRealContent = content.some(line => line.text && line.text.trim() !== '' && !line.isPlaceholder)
+              console.log('✅ Canvas: Has real content?', hasRealContent)
+              setHasContent(hasRealContent)
             }
           } catch (e) {
-            console.error('Error parsing canvas content:', e)
+            console.error('❌ Error parsing canvas content:', e)
           }
+          hasLoadedRef.current = true
+          setIsLoading(false)
         })
-        .catch(err => console.error('Error loading canvas:', err))
+        .catch(err => {
+          console.error('❌ Error loading canvas:', err)
+          setIsLoading(false)
+        })
     } else if (channelId) {
-      // Load canvas by channel_id
-      console.log('Canvas: Loading by channel ID', channelId)
+      // Load canvas specific to this channel/DM
+      const isDirectMessage = channelId < 0
+      console.log('Canvas: Loading canvas for', isDirectMessage ? 'DM' : 'channel', 'ID', channelId)
       api.get(`/api/canvas/?channel_id=${channelId}`)
         .then(res => {
-          console.log('Canvas: Loaded canvases for channel', res.data)
+          console.log('📦 Canvas: Loaded canvases for channel', channelId, res.data)
           if (res.data && res.data.length > 0) {
-            const canvas = res.data[0] // Get first canvas for this channel
-            console.log('Canvas: Using canvas', canvas)
+            const canvas = res.data[0] // Get canvas for this specific channel
+            console.log('✅ Canvas: Found existing canvas for this channel', canvas)
             setSavedCanvasId(canvas.id)
             setTitle(canvas.title || 'Your canvas title')
             try {
               const content = JSON.parse(canvas.content)
-              console.log('Canvas: Parsed content', content)
+              console.log('✅ Canvas: Parsed content', content)
               if (Array.isArray(content) && content.length > 0) {
+                console.log('✅ Canvas: Setting lines to', content)
                 setLines(content)
-                setHasContent(content.some(line => line.text && !line.isPlaceholder))
+                // Check if there's actual content (not just empty/placeholder lines)
+                const hasRealContent = content.some(line => line.text && line.text.trim() !== '' && !line.isPlaceholder)
+                console.log('✅ Canvas: Has real content?', hasRealContent)
+                setHasContent(hasRealContent)
               } else {
-                console.log('Canvas: Content is empty or not an array')
+                console.log('⚠️ Canvas: Content is empty or not an array')
               }
             } catch (e) {
-              console.error('Error parsing canvas content:', e)
+              console.error('❌ Error parsing canvas content:', e)
             }
           } else {
-            console.log('Canvas: No existing canvas found for this channel')
+            // No canvas exists for this channel yet, will create on first save
+            console.log('✅ Canvas: No canvas for channel', channelId, '- starting fresh')
           }
+          hasLoadedRef.current = true
+          setIsLoading(false)
         })
-        .catch(err => console.error('Error loading canvas for channel:', err))
+        .catch(err => {
+          console.error('❌ Error loading canvas for channel:', err)
+          setIsLoading(false)
+        })
     }
   }, [channelId, canvasId])
 
   // Auto-save after 2 seconds of inactivity
   useEffect(() => {
-    const hasNonEmptyContent = lines.some(line => line.text && !line.isPlaceholder)
+    const hasNonEmptyContent = lines.some(line => line.text && line.text.trim() !== '' && !line.isPlaceholder)
     if (!hasNonEmptyContent) {
       console.log('Canvas: Skipping auto-save - no content')
       return
@@ -99,7 +130,7 @@ export default function Canvas({ channelId = null, canvasId = null }) {
 
   const saveCanvas = async () => {
     const content = JSON.stringify(lines)
-    const hasNonEmptyContent = lines.some(line => line.text && !line.isPlaceholder)
+    const hasNonEmptyContent = lines.some(line => line.text && line.text.trim() !== '' && !line.isPlaceholder)
     
     if (!hasNonEmptyContent) {
       console.log('Canvas: Skipping save - no content')
@@ -157,12 +188,13 @@ export default function Canvas({ channelId = null, canvasId = null }) {
   }
 
   const handleLineChange = (id, newText) => {
-    setLines(lines.map(line => 
+    const updatedLines = lines.map(line => 
       line.id === id ? { ...line, text: newText, isPlaceholder: false } : line
-    ))
+    )
+    setLines(updatedLines)
     
-    // Check if any line has content to show toolbar
-    const hasAnyContent = lines.some(line => line.text !== '' || newText !== '')
+    // Check if any line has actual content (not just empty strings)
+    const hasAnyContent = updatedLines.some(line => line.text && line.text.trim() !== '' && !line.isPlaceholder)
     setHasContent(hasAnyContent)
   }
 
@@ -209,7 +241,7 @@ export default function Canvas({ channelId = null, canvasId = null }) {
       }
       
       // Update hasContent
-      const hasAnyContent = newLines.some(line => line.text !== '')
+      const hasAnyContent = newLines.some(line => line.text && line.text.trim() !== '' && !line.isPlaceholder)
       setHasContent(hasAnyContent)
     }
   }
@@ -243,6 +275,20 @@ export default function Canvas({ channelId = null, canvasId = null }) {
     // Can be enhanced with rich text editor
   }
 
+  console.log('🎨 Canvas RENDER:', { isLoading, hasContent, linesCount: lines.length, title, savedCanvasId })
+
+  if (isLoading) {
+    return (
+      <div className="canvas-page">
+        <div className="canvas-container">
+          <div style={{ padding: '40px', textAlign: 'center', color: '#fff' }}>
+            Loading canvas...
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="canvas-page">
       <div className="canvas-container">
@@ -256,11 +302,6 @@ export default function Canvas({ channelId = null, canvasId = null }) {
           />
           <div className="canvas-save-status">
             {saving && <span className="saving-indicator">Saving...</span>}
-            {!saving && lastSaved && (
-              <span className="saved-indicator">
-                <Save size={14} /> Saved {new Date(lastSaved).toLocaleTimeString()}
-              </span>
-            )}
           </div>
         </div>
 

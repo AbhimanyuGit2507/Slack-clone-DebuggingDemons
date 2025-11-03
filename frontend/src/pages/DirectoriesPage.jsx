@@ -73,72 +73,80 @@ const DirectoriesPage = () => {
       transition={{ duration: 0.2 }}
     >
       {/* Header */}
-      <div className="directories-header">
-        <h1 className="directories-title">Directories</h1>
+      <div className="dir-header">
+        <h1 className="dir-header-title">Directories</h1>
       </div>
 
-      {/* Tabs */}
-      <div className="directories-tabs">
+      {/* Tabs Navigation */}
+      <div className="dir-tabs">
         <button 
-          className={`dir-tab ${activeTab === 'people' ? 'active' : ''}`}
+          className={`dir-tab-btn ${activeTab === 'people' ? 'dir-tab-active' : ''}`}
           onClick={() => setActiveTab('people')}
         >
-          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M10 10c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-          </svg>
-          People
+          <User size={16} />
+          <span>People</span>
         </button>
         <button 
-          className={`dir-tab ${activeTab === 'channels' ? 'active' : ''}`}
+          className={`dir-tab-btn ${activeTab === 'channels' ? 'dir-tab-active' : ''}`}
           onClick={() => setActiveTab('channels')}
         >
           <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
             <path d="M7.5 3h5v14h-5V3zm-4 4h3v10h-3V7zm11 0h3v10h-3V7z"/>
           </svg>
-          Channels
+          <span>Channels</span>
         </button>
         <button 
-          className={`dir-tab ${activeTab === 'groups' ? 'active' : ''}`}
+          className={`dir-tab-btn ${activeTab === 'groups' ? 'dir-tab-active' : ''}`}
           onClick={() => setActiveTab('groups')}
         >
           <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
             <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
           </svg>
-          User groups
+          <span>User groups</span>
         </button>
         <button 
-          className={`dir-tab ${activeTab === 'external' ? 'active' : ''}`}
+          className={`dir-tab-btn ${activeTab === 'external' ? 'dir-tab-active' : ''}`}
           onClick={() => setActiveTab('external')}
         >
           <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
             <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/>
           </svg>
-          External
+          <span>External</span>
         </button>
         <button 
-          className={`dir-tab ${activeTab === 'invitations' ? 'active' : ''}`}
+          className={`dir-tab-btn ${activeTab === 'invitations' ? 'dir-tab-active' : ''}`}
           onClick={() => setActiveTab('invitations')}
         >
           <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
           </svg>
-          Invitations
+          <span>Invitations</span>
         </button>
       </div>
 
-      {/* Search Bar */}
-      <div className="directories-search-section">
-        <div className="search-bar-wrapper">
-          <Search size={18} className="search-icon" />
+      {/* Search and Invite Section */}
+      <div className="dir-search-area">
+        <div className="dir-search-container">
+          <Search size={18} className="dir-search-icon" />
           <input 
             type="text"
-            className="search-input"
+            className="dir-search-input"
             placeholder="Search for people"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
+          {searchQuery && (
+            <button 
+              className="dir-search-clear"
+              onClick={() => setSearchQuery('')}
+            >
+              <X size={16} />
+            </button>
+          )}
         </div>
-        <button className="invite-btn">Invite people</button>
+        <button className="dir-invite-button">
+          <span>Invite people</span>
+        </button>
       </div>
 
       {/* Content based on active tab */}

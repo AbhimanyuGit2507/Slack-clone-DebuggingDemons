@@ -39,37 +39,41 @@ def get_current_user(
     session_id: Optional[str] = Cookie(None, alias=settings.SESSION_COOKIE_NAME),
     db: Session = Depends(get_db)
 ) -> User:
-    """Get the current authenticated user from session cookie"""
+    """Get the current authenticated user from session cookie or return default user"""
+    # If no session, return the first user (demo mode without authentication)
     if not session_id:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not authenticated"
-        )
+        default_user = db.query(User).first()
+        if not default_user:
+            # Create a default user if none exists
+            default_user = User(
+                username="demo_user",
+                email="demo@example.com",
+                full_name="Demo User",
+                hashed_password=hash_password("demo123")
+            )
+            db.add(default_user)
+            db.commit()
+            db.refresh(default_user)
+        return default_user
     
     session = db.query(SessionModel).filter(
         SessionModel.session_id == session_id
     ).first()
     
     if not session:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid session"
-        )
+        # Return default user instead of raising error
+        return db.query(User).first()
     
     if session.expires_at < datetime.utcnow():
         db.delete(session)
         db.commit()
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Session expired"
-        )
+        # Return default user instead of raising error
+        return db.query(User).first()
     
     user = db.query(User).filter(User.id == session.user_id).first()
     if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="User not found"
-        )
+        # Return default user instead of raising error
+        return db.query(User).first()
     
     return user
 

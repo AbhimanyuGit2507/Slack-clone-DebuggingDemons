@@ -37,6 +37,7 @@ export default function ChannelPage({ channelId }){
   const [showSearchModal, setShowSearchModal] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
+  const [openCanvasId, setOpenCanvasId] = useState(null)
 
   const fetchMessages = async () => {
     if (channel?.id) {
@@ -60,9 +61,10 @@ export default function ChannelPage({ channelId }){
         setIsStarred(starredChannels.includes(res.data.id))
         
         // Check if we should auto-open canvas
-        const openCanvasId = localStorage.getItem('openCanvasInChannel')
-        if (openCanvasId) {
+        const canvasIdToOpen = localStorage.getItem('openCanvasInChannel')
+        if (canvasIdToOpen) {
           setActiveTab('canvas')
+          setOpenCanvasId(parseInt(canvasIdToOpen))
           localStorage.removeItem('openCanvasInChannel')
         }
       }).catch(err => {
@@ -487,7 +489,9 @@ export default function ChannelPage({ channelId }){
       )}
 
       {/* Canvas View */}
-      {activeTab === 'canvas' && <Canvas key={channel?.id} channelId={channel?.id} />}
+      <div style={{ display: activeTab === 'canvas' ? 'block' : 'none' }}>
+        <Canvas channelId={channel?.id} canvasId={openCanvasId} />
+      </div>
 
       {/* Edit Description Modal */}
       {showDescriptionModal && (

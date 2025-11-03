@@ -18,13 +18,14 @@ def create_canvas(
     current_user: User = Depends(get_current_user)
 ):
     """Create a new canvas document"""
-    # If channel_id provided, verify membership
-    if canvas_data.channel_id:
+    # If channel_id provided and positive (not a DM), verify membership
+    if canvas_data.channel_id and canvas_data.channel_id > 0:
         channel = db.query(Channel).filter(Channel.id == canvas_data.channel_id).first()
         if not channel:
             raise HTTPException(status_code=404, detail="Channel not found")
         if current_user not in channel.members:
             raise HTTPException(status_code=403, detail="Not a member of this channel")
+    # Negative channel_ids represent DMs, no verification needed
     
     canvas = Canvas(
         title=canvas_data.title,

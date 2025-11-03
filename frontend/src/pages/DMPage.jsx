@@ -234,7 +234,9 @@ export default function DMPage({ userId }){
       )}
 
       {/* Canvas View */}
-      {activeTab === 'canvas' && <Canvas />}
+      <div style={{ display: activeTab === 'canvas' ? 'block' : 'none' }}>
+        <Canvas channelId={id ? -id : null} />
+      </div>
 
       {/* Profile Sidebar */}
       {showProfile && (

@@ -223,26 +223,27 @@ export default function Sidebar(){
         <ChevronRightIcon className="arrow" size={16} />
       </div>
 
-      <div className="sidebar-menu">
-        <button className="sidebar-menu-item">
-          <HeadphonesIcon size={18} />
-          <span>Huddles</span>
-        </button>
-        <Link to="/directories" className="sidebar-menu-item" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <UserDirectoryIcon size={18} />
-          <span>Directories</span>
-        </Link>
-      </div>
+      <nav className="sidebar-sections">
+        <div className="sidebar-menu">
+          <button className="sidebar-menu-item">
+            <HeadphonesIcon size={18} />
+            <span>Huddles</span>
+          </button>
+          <Link to="/directories" className="sidebar-menu-item" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <UserDirectoryIcon size={18} />
+            <span>Directories</span>
+          </Link>
+        </div>
 
-      <div className="sidebar-starred">
-        <button 
-          className="sidebar-starred-header"
-          onClick={() => setStarredExpanded(!starredExpanded)}
-        >
-          <ChevronRightIcon size={18} className={starredExpanded ? 'rotate-90' : ''} />
-          <StarIcon size={18} />
-          <span>Starred</span>
-        </button>
+        <div className="sidebar-starred">
+          <button 
+            className="sidebar-starred-header"
+            onClick={() => setStarredExpanded(!starredExpanded)}
+          >
+            <ChevronRightIcon size={18} className={starredExpanded ? 'rotate-90' : ''} />
+            <StarIcon size={18} />
+            <span>Starred</span>
+          </button>
         {starredExpanded && (
           <div 
             className="starred-dropzone"
@@ -304,9 +305,8 @@ export default function Sidebar(){
             )}
           </div>
         )}
-      </div>
+        </div>
 
-      <nav className="sidebar-sections">
         <div className="sidebar-section">
           <div className="sidebar-section-header" onClick={() => setChannelsExpanded(!channelsExpanded)}>
             {channelsExpanded ? <ChevronDownIcon size={14} className="section-caret" /> : <ChevronRightIcon size={14} className="section-caret" />}
@@ -389,11 +389,6 @@ export default function Sidebar(){
           )}
         </div>
       </nav>
-
-      <div className="sidebar-footer">
-        <p>Slack works better when you use it together.</p>
-        <button className="invite-btn">👥 Invite teammates</button>
-      </div>
 
       <CreateChannelModal
         isOpen={showCreateChannel}

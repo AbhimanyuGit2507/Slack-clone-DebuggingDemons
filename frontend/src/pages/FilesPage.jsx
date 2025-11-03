@@ -47,15 +47,22 @@ export default function FilesPage() {
     api.get('/api/canvas/')
       .then(res => {
         console.log('Canvas API response:', res.data)
-        // Filter out empty canvases
+        // Filter out empty canvases - only show those with real content (not just placeholder text)
         const nonEmptyCanvases = (res.data || []).filter(canvas => {
           try {
             const content = JSON.parse(canvas.content)
-            return Array.isArray(content) && content.some(line => line.text && !line.isPlaceholder)
+            // Check if there's at least one line with real text (not placeholder, not empty)
+            return Array.isArray(content) && content.some(line => 
+              line.text && 
+              line.text.trim() !== '' && 
+              !line.isPlaceholder
+            )
           } catch (e) {
-            return canvas.content && canvas.content.length > 0
+            console.error('Error parsing canvas content:', e)
+            return false
           }
         })
+        console.log('Filtered canvases with content:', nonEmptyCanvases)
         setCanvases(nonEmptyCanvases)
       })
       .catch(err => {
@@ -132,17 +139,6 @@ export default function FilesPage() {
             </div>
           </div>
 
-          <div className="files-recently-viewed">
-            <h3>Recently viewed</h3>
-            <div className="recent-file-item">
-              <span className="recent-emojis">🎉 ❤️ 😊</span>
-            </div>
-            <div className="recent-file-item">
-              <FileText size={18} />
-              <span>Weekly 1:1</span>
-            </div>
-          </div>
-
           <div className="starred-section">
             <h3>Recently viewed</h3>
             {recentlyViewed.length === 0 ? (
@@ -215,11 +211,6 @@ export default function FilesPage() {
             <PlusIcon size={16} />
             New
           </button>
-        </div>
-
-        <div className="files-search-bar">
-          <SearchIcon size={18} className="search-icon" />
-          <input type="text" placeholder="Search files" />
         </div>
 
         <div className="files-filter-bar">

@@ -20,19 +20,15 @@ COPY . .
 # Create necessary directories
 RUN mkdir -p /app/data /app/uploads
 
-# Initialize database with sample data
-RUN python seed.py || true
+# Initialize database with sample data (optional, will run on first startup if needed)
+RUN python seed.py || echo "Database seeding skipped or failed - will retry on startup"
 
 # Expose port
 EXPOSE 8000
-
-# Copy startup script
-COPY start.sh /app/start.sh
-RUN chmod +x /app/start.sh
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:8000/docs || exit 1
 
-# Run the application
-CMD ["/app/start.sh"]
+# Run the application directly with uvicorn
+CMD ["sh", "-c", "python seed.py || true && uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]

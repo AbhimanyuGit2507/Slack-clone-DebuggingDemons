@@ -1,28 +1,33 @@
-# Slack Reinforcement Learning Environment# Slack Clone - Real-time Collaboration Platform# slack-rl-clone
+# Slack Clone - ScalerAI Hackathon 2025
 
+**Team: DebuggingDemons**
 
+A high-fidelity, full-stack Slack clone built with React and FastAPI, featuring real-time messaging, channels, direct messages, canvas collaboration, and file sharing.
 
-## Project Overview
+---
 
+## 🚀 Quick Start (3 Commands)
 
-
-This project is a **high-fidelity fullstack clone of Slack**, built as part of the ScalerAI Hackathon. The goal is to deliver a highly interactive, visually smooth, and logically consistent user experience that demonstrates the ability to design and implement a complete web application combining strong frontend design and user interaction handling with robust backend logic for data management and synchronization.A full-featured Slack clone built with React (frontend) and FastAPI (backend), featuring real-time messaging, channels, direct messages, canvas collaboration, and file sharing.Lightweight Slack-like frontend + backend starter for RL environment simulation.
-
-
-
-## 🎯 Setup Commands
-
-
-
-# Command 1: Clone the repo
-
+```bash
+# 1. Clone the repository
 git clone https://github.com/AbhimanyuGit2507/Slack-clone-DebuggingDemons.git
 
-# Command 2: Go into the project folder
+# 2. Enter the project directory
 cd Slack-clone-DebuggingDemons
 
-# Command 3: Start everything with Docker
+# 3. Start with Docker (installs everything automatically)
 docker-compose up --build
+```
+
+**Then open:** http://localhost:5173
+
+✅ **That's it!** Database will be automatically created and seeded with sample data.
+
+---
+
+## 📋 Project Overview
+
+This project is a **high-fidelity fullstack clone of Slack**, built as part of the ScalerAI Hackathon. The goal is to deliver a highly interactive, visually smooth, and logically consistent user experience that demonstrates the ability to design and implement a complete web application combining strong frontend design and user interaction handling with robust backend logic for data management and synchronization
 
 
 
