@@ -4,8 +4,8 @@ Creates initial database schema and populates with sample data
 """
 
 import sys
-from backend.database import engine, SessionLocal
-from backend.models import Base, User, Channel, Message, DirectMessage
+from database import engine, SessionLocal
+from models import Base, User, Channel, Message, DirectMessage
 
 
 def init_db():
