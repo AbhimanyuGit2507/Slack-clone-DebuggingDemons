@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    image: ghcr.io/AbhimanyuGit2507/slack-backend:latest
+    container_name: slack-backend
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+
+  frontend:
+    image: ghcr.io/AbhimanyuGit2507/slack-frontend:latest
+    container_name: slack-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+networks:
+  default:
+    driver: bridge
