@@ -1,34 +1,29 @@
 FROM python:3.11-slim
 
+# Work in the repository root so the backend package is available at /app/backend
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+# Install system deps required for some Python packages
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends build-essential gcc libpq-dev curl \
+  && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY requirements.txt .
+# Copy backend sources and data
+COPY backend/ ./backend/
+COPY data/ ./data/
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python deps (use backend requirements file)
+RUN pip install --no-cache-dir -U pip
+RUN pip install --no-cache-dir -r backend/requirements.txt
 
-# Copy application code
-COPY . .
-
-# Create necessary directories
+# Ensure directories exist for runtime
 RUN mkdir -p /app/data /app/uploads
 
-# Initialize database with sample data (optional, will run on first startup if needed)
-RUN python seed.py || echo "Database seeding skipped or failed - will retry on startup"
+# Try to initialize the DB at build time; if it fails we'll seed on startup
+RUN python backend/seed.py || echo "Database seeding skipped (will run at container startup)"
 
-# Expose port
+ENV PORT=8000
 EXPOSE 8000
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:8000/docs || exit 1
-
-# Run the application directly with uvicorn
-CMD ["sh", "-c", "python seed.py || true && uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+# Start uvicorn pointing to the backend package
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]

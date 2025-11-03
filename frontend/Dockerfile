@@ -1,24 +1,21 @@
-FROM node:18-alpine
-
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
+### Multi-stage build for frontend (Vite + React) -> nginx
+FROM node:18-alpine AS builder
+WORKDIR /app/frontend
 
 # Install dependencies
-RUN npm install
+COPY frontend/package.json frontend/package-lock.json* ./
+RUN npm ci --silent || npm install --silent
 
-# Copy application code
-COPY . .
-
-# Build the application
+# Copy source and build
+COPY frontend/ ./
 RUN npm run build
 
-# Install serve to run the production build
-RUN npm install -g serve
+### Production image: nginx serving built assets
+FROM nginx:stable-alpine
+COPY --from=builder /app/frontend/dist /usr/share/nginx/html
 
-# Expose port (Render will use PORT env variable)
-EXPOSE 5173
+# SPA fallback: route all to index.html
+COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
 
-# Start production server
-CMD sh -c "serve -s dist -l ${PORT:-5173}"
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

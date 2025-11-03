@@ -3,47 +3,30 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: backend/Dockerfile
     container_name: slack-backend
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=sqlite:///./slack.db
-      - SECRET_KEY=scalerai-hackathon-secret-key-2024
-      - PYTHONUNBUFFERED=1
-    volumes:
-      - backend-data:/app
-      - ./backend/uploads:/app/uploads
-    networks:
-      - slack-network
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 10s
+      - PORT=8000
 
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: frontend/Dockerfile
     container_name: slack-frontend
-    ports:
-      - "5173:5173"
-    environment:
-      - VITE_API_URL=http://localhost:8000
-    depends_on:
-      backend:
-        condition: service_healthy
-    networks:
-      - slack-network
     restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
 
+# Optional: networks can be added for custom configuration
 networks:
-  slack-network:
+  default:
     driver: bridge
-
-volumes:
-  backend-data:
