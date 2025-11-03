@@ -35,21 +35,21 @@ def seed_data():
                 username="john_doe",
                 email="john@example.com",
                 full_name="John Doe",
-                hashed_password="$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYqgOqA6jfq"  # password: password123
+                password_hash="$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYqgOqA6jfq"  # password: password123
             ),
             User(
                 id=2,
                 username="jane_smith",
                 email="jane@example.com",
                 full_name="Jane Smith",
-                hashed_password="$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYqgOqA6jfq"
+                password_hash="$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYqgOqA6jfq"
             ),
             User(
                 id=3,
                 username="bob_wilson",
                 email="bob@example.com",
                 full_name="Bob Wilson",
-                hashed_password="$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYqgOqA6jfq"
+                password_hash="$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYqgOqA6jfq"
             ),
         ]
         db.add_all(users)
