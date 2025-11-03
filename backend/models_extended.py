@@ -1,7 +1,11 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Boolean, Text
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from .database import Base
+
+try:
+    from .database import Base
+except ImportError:
+    from database import Base
 
 class Notification(Base):
     __tablename__ = 'notifications'

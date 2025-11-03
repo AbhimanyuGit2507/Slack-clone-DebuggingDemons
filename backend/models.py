@@ -1,7 +1,11 @@
 from sqlalchemy import Column, Integer, String, Table, ForeignKey, DateTime, Text, Boolean
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from .database import Base
+
+try:
+    from .database import Base
+except ImportError:
+    from database import Base
 
 channel_members = Table(
     'channel_members', Base.metadata,
