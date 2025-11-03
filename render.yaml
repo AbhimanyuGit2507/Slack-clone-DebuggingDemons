@@ -1,0 +1,26 @@
+services:
+  # Backend Service
+  - type: web
+    name: slack-clone-backend
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./slack.db
+      - key: FRONTEND_URL
+        value: https://slack-clone-frontend.onrender.com
+    healthCheckPath: /docs
+
+  # Frontend Service
+  - type: web
+    name: slack-clone-frontend
+    env: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: slack-clone-backend
+          property: host
