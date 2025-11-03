@@ -4,16 +4,16 @@ Creates initial database schema and populates with sample data
 """
 
 import sys
-import json
-from pathlib import Path
-from database import engine, SessionLocal
-from models import Base, User, Channel, Message, DirectMessage
+from backend.database import engine, SessionLocal
+from backend.models import Base, User, Channel, Message, DirectMessage
+
 
 def init_db():
     """Initialize database tables"""
     print("Creating database tables...")
     Base.metadata.create_all(bind=engine)
     print("✓ Database tables created successfully!")
+
 
 def seed_data():
     """Seed database with sample data"""
@@ -52,9 +52,7 @@ def seed_data():
                 hashed_password="$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5GyYqgOqA6jfq"
             ),
         ]
-        
-        for user in users:
-            db.add(user)
+        db.add_all(users)
         
         # Create sample channels
         channels = [
@@ -80,9 +78,7 @@ def seed_data():
                 created_by=2
             ),
         ]
-        
-        for channel in channels:
-            db.add(channel)
+        db.add_all(channels)
         
         # Create sample messages
         messages = [
@@ -105,9 +101,7 @@ def seed_data():
                 user_id=3
             ),
         ]
-        
-        for message in messages:
-            db.add(message)
+        db.add_all(messages)
         
         db.commit()
         print("✓ Database seeded successfully with sample data!")
@@ -121,6 +115,7 @@ def seed_data():
         sys.exit(1)
     finally:
         db.close()
+
 
 if __name__ == "__main__":
     print("=" * 50)
