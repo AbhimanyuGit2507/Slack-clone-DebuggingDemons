@@ -18,7 +18,8 @@ app = FastAPI(title=settings.APP_NAME)
 # CORS for Vite dev server
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
+    # Temporary: allow all origins for debugging deployment issues (revert before production)
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
