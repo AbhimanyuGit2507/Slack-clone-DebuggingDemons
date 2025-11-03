@@ -10,6 +10,22 @@ This project is a **high-fidelity fullstack clone of Slack**, built as part of t
 
 
 
+## 🎯 Setup Commands
+
+
+
+# Command 1: Clone the repo
+
+git clone https://github.com/AbhimanyuGit2507/Slack-clone-DebuggingDemons.git
+
+# Command 2: Go into the project folder
+cd Slack-clone-DebuggingDemons
+
+# Command 3: Start everything with Docker
+docker-compose up --build
+
+
+
 ## 🎯 Assignment Objectives
 
 
