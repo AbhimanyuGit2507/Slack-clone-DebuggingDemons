@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Workspace - Slack Clone</title>
+    <link rel="stylesheet" href="slack-styles.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <div class="nav-left">
+            <button class="nav-btn">←</button>
+            <button class="nav-btn">→</button>
+            <button class="nav-btn">⟲</button>
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search New Workspace">
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="help-btn">?</button>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Slim Left Navigation -->
+        <nav class="slim-nav">
+            <div class="slim-nav-items">
+                <a href="#" class="slim-nav-item">
+                    <div class="workspace-icon-small">NW</div>
+                </a>
+                <a href="#" class="slim-nav-item active">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                    <span class="slim-nav-label">Home</span>
+                </a>
+                <a href="#" class="slim-nav-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                    </svg>
+                    <span class="slim-nav-label">DMs</span>
+                </a>
+                <a href="#" class="slim-nav-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+                    </svg>
+                    <span class="slim-nav-label">Activity</span>
+                </a>
+                <a href="#" class="slim-nav-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                    </svg>
+                    <span class="slim-nav-label">Files</span>
+                </a>
+                <a href="#" class="slim-nav-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                    <span class="slim-nav-label">More</span>
+                </a>
+            </div>
+            <div class="slim-nav-bottom">
+                <a href="#" class="slim-nav-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                </a>
+                <button class="slim-nav-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="workspace-header">
+                <div class="workspace-info">
+                    <span class="workspace-name">New Workspace</span>
+                    <span class="dropdown-arrow">▼</span>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn">⚙</button>
+                    <button class="icon-btn">✎</button>
+                </div>
+            </div>
+
+            <div class="trial-banner">
+                <svg class="trial-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M12 2L9 9l-7 3 7 3 3 7 3-7 7-3-7-3-3-7z"/>
+                </svg>
+                <span class="trial-text">30 days left in trial</span>
+                <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M6 3l5 5-5 5V3z"/>
+                </svg>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <span>Huddles</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                    <span>Directories</span>
+                </a>
+            </nav>
+
+            <div class="starred-section">
+                <div class="section-header">
+                    <svg class="section-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <span>Starred</span>
+                </div>
+                <p class="section-hint">Drag and drop important stuff here</p>
+            </div>
+
+            <div class="channels-section">
+                <div class="section-header">
+                    <svg class="collapse-icon" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                        <path d="M2 4l4 4 4-4H2z"/>
+                    </svg>
+                    <span>Channels</span>
+                </div>
+                <a href="#" class="channel-item"># all-new-workspace</a>
+                <a href="#" class="channel-item active"># new-channel</a>
+                <a href="#" class="channel-item"># social</a>
+            </div>
+
+            <div class="dm-section">
+                <div class="section-header">
+                    <svg class="collapse-icon" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                        <path d="M2 4l4 4 4-4H2z"/>
+                    </svg>
+                    <span>Direct messages</span>
+                </div>
+                <a href="#" class="dm-item">
+                    <span class="avatar">a</span>
+                    <span>aditya shukla</span>
+                    <span class="you-badge">you</span>
+                </a>
+            </div>
+
+            <div class="apps-section">
+                <div class="section-header">
+                    <svg class="collapse-icon" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                        <path d="M2 4l4 4 4-4H2z"/>
+                    </svg>
+                    <span>Apps</span>
+                </div>
+                <a href="#" class="app-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='10' fill='%234A90E2'/%3E%3Cpath fill='white' d='M5 10h10M10 5v10'/%3E%3C/svg%3E" class="app-icon" alt="Slackbot">
+                    <span>Slackbot</span>
+                    <span class="notification-badge">1</span>
+                </a>
+            </div>
+
+            <div class="sidebar-footer">
+                <p>Slack works better when you use it together.</p>
+                <button class="invite-btn">👥 Invite teammates</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Channel Header -->
+            <div class="channel-header">
+                <div class="channel-info">
+                    <button class="icon-btn">⭐</button>
+                    <h1 class="channel-name"># new-channel</h1>
+                </div>
+                <div class="channel-actions">
+                    <button class="btn-secondary">👥 Invite teammates</button>
+                    <button class="btn-huddle">🎧 Huddle ▼</button>
+                    <button class="icon-btn">🔍</button>
+                    <button class="icon-btn">⋮</button>
+                </div>
+            </div>
+
+            <!-- Channel Tabs -->
+            <div class="channel-tabs">
+                <button class="tab active">💬 Messages</button>
+                <button class="tab">📋 Add canvas</button>
+                <button class="tab">+</button>
+            </div>
+
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h2 class="welcome-title">👋 Welcome to your first channel!</h2>
+                <p class="welcome-subtitle">
+                    Channels keep work focused around a specific topic. Pick a template to get started, or <a href="#">see all</a>.
+                </p>
+
+                <div class="template-grid">
+                    <!-- Template Card 1 -->
+                    <div class="template-card teal">
+                        <div class="card-header">
+                            <h3>Run a project</h3>
+                            <p>Project starter kit template</p>
+                        </div>
+                        <div class="card-preview">
+                            <div class="preview-content">
+                                <div class="preview-item">
+                                    <span class="preview-icon">👥</span> Team
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-icon">📄</span> Documents
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-icon">🎯</span> Milestones
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Template Card 2 -->
+                    <div class="template-card green">
+                        <div class="card-header">
+                            <h3>Chat with your team</h3>
+                            <p>Team support template</p>
+                        </div>
+                        <div class="card-preview">
+                            <div class="huddle-preview">
+                                <div class="huddle-header">
+                                    <span class="huddle-icon">🎧</span>
+                                    <span>Weekly sync</span>
+                                </div>
+                                <div class="huddle-participants">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect fill='%23e91e63' width='60' height='60'/%3E%3C/svg%3E" alt="participant">
+                                    <div class="join-badge">Join huddle</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Template Card 3 -->
+                    <div class="template-card orange">
+                        <div class="card-header">
+                            <h3>Collaborate with external partners</h3>
+                            <p>External partner template</p>
+                        </div>
+                        <div class="card-preview">
+                            <div class="preview-channel">
+                                <div class="channel-line"></div>
+                                <div class="channel-avatars">
+                                    <span class="mini-avatar"></span>
+                                    <span class="mini-avatar"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Template Card 4 -->
+                    <div class="template-card purple">
+                        <div class="card-header">
+                            <h3>Invite teammates</h3>
+                            <p>Add your whole team</p>
+                        </div>
+                        <div class="card-preview">
+                            <div class="avatars-group">
+                                <div class="avatar-circle pink"></div>
+                                <div class="avatar-circle blue"></div>
+                                <div class="avatar-circle yellow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message Feed -->
+            <div class="message-feed">
+                <div class="date-divider">
+                    <button class="date-btn">Today ▼</button>
+                </div>
+
+                <div class="message">
+                    <div class="message-avatar">a</div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="author">aditya shukla</span>
+                            <span class="timestamp">17:55</span>
+                        </div>
+                        <p class="message-text">joined #new-channel.</p>
+                    </div>
+                </div>
+
+                <button class="start-here-btn">👇 Start here</button>
+            </div>
+
+            <!-- Message Input -->
+            <div class="message-input-container">
+                <div class="message-toolbar">
+                    <button class="toolbar-btn"><strong>B</strong></button>
+                    <button class="toolbar-btn"><em>I</em></button>
+                    <button class="toolbar-btn"><u>U</u></button>
+                    <button class="toolbar-btn"><s>S</s></button>
+                    <button class="toolbar-btn">🔗</button>
+                    <button class="toolbar-btn">≡</button>
+                    <button class="toolbar-btn">1.</button>
+                    <button class="toolbar-btn">&lt;/&gt;</button>
+                    <button class="toolbar-btn">📎</button>
+                </div>
+                <div class="message-input">
+                    <input type="text" placeholder="Message #new-channel">
+                </div>
+                <div class="message-actions">
+                    <button class="action-btn">+</button>
+                    <button class="action-btn">A</button>
+                    <button class="action-btn">😊</button>
+                    <button class="action-btn">@</button>
+                    <button class="action-btn">📹</button>
+                    <button class="action-btn">🎤</button>
+                    <button class="action-btn">✂</button>
+                    <button class="send-btn">➤</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

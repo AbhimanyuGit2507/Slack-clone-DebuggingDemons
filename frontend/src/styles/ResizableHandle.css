@@ -1,0 +1,63 @@
+.resizable-container {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  cursor: col-resize;
+  background: transparent;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.resize-handle:hover,
+.resize-handle.resizing {
+  background: #1264a3;
+}
+
+.resize-handle::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+}
+
+/* Right side resizable container */
+.resizable-container-right {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.resize-handle-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  cursor: col-resize;
+  background: transparent;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.resize-handle-left:hover,
+.resize-handle-left.resizing {
+  background: #1264a3;
+}
+
+.resize-handle-left::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+}

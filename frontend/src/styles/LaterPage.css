@@ -1,0 +1,94 @@
+.later-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--slack-text);
+}
+
+.later-header {
+  margin-bottom: 2rem;
+}
+
+.later-header h1 {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--slack-text);
+  margin-bottom: 0.5rem;
+}
+
+.later-subtitle {
+  font-size: 15px;
+  color: var(--slack-text-secondary);
+}
+
+.later-content {
+  background: var(--slack-bg);
+  border: 1px solid var(--slack-border);
+  border-radius: 8px;
+  padding: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.later-empty {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.later-icon {
+  font-size: 64px;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.later-empty h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--slack-text);
+  margin-bottom: 0.5rem;
+}
+
+.later-empty p {
+  font-size: 15px;
+  color: var(--slack-text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.later-learn-more {
+  background: none;
+  border: none;
+  color: var(--slack-button-primary);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.later-learn-more:hover {
+  text-decoration: underline;
+}
+
+.later-section {
+  margin-top: 2rem;
+}
+
+.later-section h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--slack-text);
+  margin-bottom: 1rem;
+}
+
+.later-empty-small {
+  background: var(--slack-bg);
+  border: 1px solid var(--slack-border);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.later-empty-small p {
+  color: var(--slack-text-secondary);
+  font-size: 15px;
+}

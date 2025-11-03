@@ -1,0 +1,71 @@
+.more-page {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--slack-text);
+}
+
+.more-header {
+  margin-bottom: 2rem;
+}
+
+.more-header h1 {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--slack-text);
+}
+
+.more-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.more-section h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--slack-text);
+  margin-bottom: 1rem;
+}
+
+.more-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 0.5rem;
+}
+
+.more-item:hover {
+  background-color: var(--slack-hover);
+}
+
+.more-item-icon {
+  font-size: 24px;
+  margin-right: 1rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--slack-bg);
+  border-radius: 8px;
+  border: 1px solid var(--slack-border);
+}
+
+.more-item-content h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--slack-text);
+  margin-bottom: 0.25rem;
+}
+
+.more-item-content p {
+  font-size: 13px;
+  color: var(--slack-text-secondary);
+  line-height: 1.4;
+}

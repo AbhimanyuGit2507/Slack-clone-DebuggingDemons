@@ -1,0 +1,278 @@
+.canvas-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #1a1d21;
+  overflow-y: auto;
+  padding: 40px 80px;
+}
+
+.canvas-container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Canvas Header */
+.canvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  gap: 20px;
+}
+
+.canvas-save-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  margin-top: 10px;
+}
+
+.saving-indicator {
+  color: #1d9bd1;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.saved-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #007a5a;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Canvas Title */
+.canvas-title-input {
+  background: transparent;
+  border: none;
+  color: #b2b3b5;
+  font-size: 36px;
+  font-weight: 700;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+  padding: 0;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
+
+.canvas-title-input::placeholder {
+  color: #6b6c6e;
+}
+
+.canvas-title-input:focus {
+  color: #d1d2d3;
+}
+
+/* Canvas Content */
+.canvas-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Canvas Line */
+.canvas-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  position: relative;
+  transition: background 0.2s;
+  border-radius: 4px;
+}
+
+.canvas-line.movable-line:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.canvas-line.fixed-line {
+  margin-top: 8px;
+}
+
+.canvas-line.dragging {
+  opacity: 0.5;
+}
+
+.canvas-line-grip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 28px;
+  color: transparent;
+  cursor: grab;
+  flex-shrink: 0;
+}
+
+.canvas-line.movable-line:hover .canvas-line-grip {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.canvas-line-grip:active {
+  cursor: grabbing;
+}
+
+.canvas-line-bullet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 28px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.canvas-line-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  font-weight: 400;
+  outline: none;
+  font-family: inherit;
+  padding: 4px 0;
+  line-height: 1.4;
+}
+
+.canvas-line-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.canvas-line-input:focus {
+  color: white;
+}
+
+/* Canvas Footer */
+.canvas-footer {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid #3a3c40;
+}
+
+.canvas-templates {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.templates-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.template-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.template-btn {
+  background: #2c2d30;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.template-btn:hover {
+  background: #3a3c40;
+}
+
+.template-link {
+  background: transparent;
+  border: none;
+  color: #1d9bd1;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.2s;
+}
+
+.template-link:hover {
+  opacity: 0.8;
+}
+
+/* Canvas Toolbar */
+.canvas-toolbar {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2c2d30;
+  border: 1px solid #3a3c40;
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.canvas-toolbar-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  width: 36px;
+  height: 36px;
+}
+
+.canvas-toolbar-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.canvas-toolbar-btn:active {
+  transform: scale(0.95);
+}
+
+/* Scrollbar */
+.canvas-page::-webkit-scrollbar {
+  width: 8px;
+}
+
+.canvas-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.canvas-page::-webkit-scrollbar-thumb {
+  background: #52525b;
+  border-radius: 4px;
+}
+
+.canvas-page::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}

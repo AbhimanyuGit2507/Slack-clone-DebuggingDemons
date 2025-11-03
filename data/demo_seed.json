@@ -1,0 +1,638 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "sarah.johnson",
+      "email": "sarah.johnson@company.com",
+      "password": "password123",
+      "full_name": "Sarah Johnson",
+      "name": "Sarah Johnson",
+      "job_title": "Senior Frontend Developer",
+      "profile_picture": "https://i.pravatar.cc/150?img=1",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Working on the new dashboard",
+      "status_emoji": "💻",
+      "bio": "Frontend enthusiast | React & TypeScript lover | Coffee addict ☕",
+      "phone": "+1-555-0101",
+      "timezone": "America/New_York"
+    },
+    {
+      "id": 2,
+      "username": "michael.chen",
+      "email": "michael.chen@company.com",
+      "password": "password123",
+      "full_name": "Michael Chen",
+      "name": "Michael Chen",
+      "job_title": "Backend Engineer",
+      "profile_picture": "https://i.pravatar.cc/150?img=12",
+      "status": "online",
+      "presence": "online",
+      "status_text": "In a meeting",
+      "status_emoji": "📅",
+      "bio": "Building scalable systems | Python & Go enthusiast | Mountain hiker 🏔️",
+      "phone": "+1-555-0102",
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "id": 3,
+      "username": "emma.williams",
+      "email": "emma.williams@company.com",
+      "password": "password123",
+      "full_name": "Emma Williams",
+      "name": "Emma Williams",
+      "job_title": "Product Manager",
+      "profile_picture": "https://i.pravatar.cc/150?img=5",
+      "status": "away",
+      "presence": "away",
+      "status_text": "Lunch break",
+      "status_emoji": "🍔",
+      "bio": "Product leader | User experience advocate | Dog mom 🐕",
+      "phone": "+1-555-0103",
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": 4,
+      "username": "james.rodriguez",
+      "email": "james.rodriguez@company.com",
+      "password": "password123",
+      "full_name": "James Rodriguez",
+      "name": "James Rodriguez",
+      "job_title": "DevOps Engineer",
+      "profile_picture": "https://i.pravatar.cc/150?img=13",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Deploying to production",
+      "status_emoji": "🚀",
+      "bio": "Cloud infrastructure expert | Kubernetes wizard | Automation lover 🤖",
+      "phone": "+1-555-0104",
+      "timezone": "America/Denver"
+    },
+    {
+      "id": 5,
+      "username": "olivia.martinez",
+      "email": "olivia.martinez@company.com",
+      "password": "password123",
+      "full_name": "Olivia Martinez",
+      "name": "Olivia Martinez",
+      "job_title": "UX Designer",
+      "profile_picture": "https://i.pravatar.cc/150?img=9",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Designing magic ✨",
+      "status_emoji": "🎨",
+      "bio": "Creating delightful user experiences | Figma enthusiast | Art lover 🖼️",
+      "phone": "+1-555-0105",
+      "timezone": "America/New_York"
+    },
+    {
+      "id": 6,
+      "username": "daniel.kim",
+      "email": "daniel.kim@company.com",
+      "password": "password123",
+      "full_name": "Daniel Kim",
+      "name": "Daniel Kim",
+      "job_title": "Full Stack Developer",
+      "profile_picture": "https://i.pravatar.cc/150?img=14",
+      "status": "dnd",
+      "presence": "dnd",
+      "status_text": "Deep work - do not disturb",
+      "status_emoji": "🎯",
+      "bio": "Building end-to-end solutions | JavaScript ninja | Gaming enthusiast 🎮",
+      "phone": "+1-555-0106",
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "id": 7,
+      "username": "sophia.anderson",
+      "email": "sophia.anderson@company.com",
+      "password": "password123",
+      "full_name": "Sophia Anderson",
+      "name": "Sophia Anderson",
+      "job_title": "QA Engineer",
+      "profile_picture": "https://i.pravatar.cc/150?img=10",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Testing new features",
+      "status_emoji": "🐛",
+      "bio": "Quality advocate | Bug hunter | Automation tester | Yoga practitioner 🧘",
+      "phone": "+1-555-0107",
+      "timezone": "America/Phoenix"
+    },
+    {
+      "id": 8,
+      "username": "william.brown",
+      "email": "william.brown@company.com",
+      "password": "password123",
+      "full_name": "William Brown",
+      "name": "William Brown",
+      "job_title": "Engineering Manager",
+      "profile_picture": "https://i.pravatar.cc/150?img=15",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Available for 1:1s",
+      "status_emoji": "👔",
+      "bio": "Leading awesome teams | Mentor | Tech strategist | BBQ master 🍖",
+      "phone": "+1-555-0108",
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": 9,
+      "username": "ava.taylor",
+      "email": "ava.taylor@company.com",
+      "password": "password123",
+      "full_name": "Ava Taylor",
+      "name": "Ava Taylor",
+      "job_title": "Data Scientist",
+      "profile_picture": "https://i.pravatar.cc/150?img=16",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Training ML models",
+      "status_emoji": "🤖",
+      "bio": "Data storyteller | ML enthusiast | Python & R expert | Runner 🏃‍♀️",
+      "phone": "+1-555-0109",
+      "timezone": "America/New_York"
+    },
+    {
+      "id": 10,
+      "username": "ethan.wilson",
+      "email": "ethan.wilson@company.com",
+      "password": "password123",
+      "full_name": "Ethan Wilson",
+      "name": "Ethan Wilson",
+      "job_title": "Security Engineer",
+      "profile_picture": "https://i.pravatar.cc/150?img=17",
+      "status": "away",
+      "presence": "away",
+      "status_text": "Security audit",
+      "status_emoji": "🔒",
+      "bio": "Cybersecurity expert | Ethical hacker | Penetration tester | Chess player ♟️",
+      "phone": "+1-555-0110",
+      "timezone": "America/New_York"
+    },
+    {
+      "id": 11,
+      "username": "isabella.garcia",
+      "email": "isabella.garcia@company.com",
+      "password": "password123",
+      "full_name": "Isabella Garcia",
+      "name": "Isabella Garcia",
+      "job_title": "Technical Writer",
+      "profile_picture": "https://i.pravatar.cc/150?img=24",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Writing documentation",
+      "status_emoji": "📝",
+      "bio": "Making complex things simple | API documentation specialist | Book lover 📚",
+      "phone": "+1-555-0111",
+      "timezone": "America/Denver"
+    },
+    {
+      "id": 12,
+      "username": "mason.lee",
+      "email": "mason.lee@company.com",
+      "password": "password123",
+      "full_name": "Mason Lee",
+      "name": "Mason Lee",
+      "job_title": "Mobile Developer",
+      "profile_picture": "https://i.pravatar.cc/150?img=18",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Building mobile apps",
+      "status_emoji": "📱",
+      "bio": "iOS & Android developer | Swift & Kotlin enthusiast | Photographer 📷",
+      "phone": "+1-555-0112",
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "id": 13,
+      "username": "mia.white",
+      "email": "mia.white@company.com",
+      "password": "password123",
+      "full_name": "Mia White",
+      "name": "Mia White",
+      "job_title": "Business Analyst",
+      "profile_picture": "https://i.pravatar.cc/150?img=25",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Analyzing data",
+      "status_emoji": "📊",
+      "bio": "Data-driven decision maker | Excel wizard | Insights enthusiast | Traveler ✈️",
+      "phone": "+1-555-0113",
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": 14,
+      "username": "lucas.harris",
+      "email": "lucas.harris@company.com",
+      "password": "password123",
+      "full_name": "Lucas Harris",
+      "name": "Lucas Harris",
+      "job_title": "Site Reliability Engineer",
+      "profile_picture": "https://i.pravatar.cc/150?img=19",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Monitoring systems",
+      "status_emoji": "📡",
+      "bio": "Keeping systems running smoothly | On-call hero | Incident responder 🚨",
+      "phone": "+1-555-0114",
+      "timezone": "America/Phoenix"
+    },
+    {
+      "id": 15,
+      "username": "charlotte.clark",
+      "email": "charlotte.clark@company.com",
+      "password": "password123",
+      "full_name": "Charlotte Clark",
+      "name": "Charlotte Clark",
+      "job_title": "Scrum Master",
+      "profile_picture": "https://i.pravatar.cc/150?img=26",
+      "status": "online",
+      "presence": "online",
+      "status_text": "Facilitating sprint planning",
+      "status_emoji": "🎯",
+      "bio": "Agile coach | Team facilitator | Process optimizer | Fitness enthusiast 💪",
+      "phone": "+1-555-0115",
+      "timezone": "America/New_York"
+    }
+  ],
+  "channels": [
+    {
+      "id": 1,
+      "name": "general",
+      "description": "Company-wide announcements and general discussions",
+      "is_private": false,
+      "created_by": 8,
+      "topic": "Welcome to the team! 👋",
+      "purpose": "General company discussions and announcements",
+      "section": "Company",
+      "members": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    },
+    {
+      "id": 2,
+      "name": "development",
+      "description": "Development team discussions and code reviews",
+      "is_private": false,
+      "created_by": 1,
+      "topic": "Sprint 23 - Focus on performance optimization",
+      "purpose": "Technical discussions, code reviews, and development updates",
+      "section": "Engineering",
+      "members": [1, 2, 4, 6, 7, 12, 14]
+    },
+    {
+      "id": 3,
+      "name": "design",
+      "description": "Design team collaboration and feedback",
+      "is_private": false,
+      "created_by": 5,
+      "topic": "New design system v2.0 in progress",
+      "purpose": "Design reviews, brainstorming, and creative discussions",
+      "section": "Design",
+      "members": [1, 3, 5, 8, 11]
+    },
+    {
+      "id": 4,
+      "name": "random",
+      "description": "Non-work banter and water cooler conversations",
+      "is_private": false,
+      "created_by": 3,
+      "topic": "Share your weekend plans! 🎉",
+      "purpose": "Random fun conversations and team bonding",
+      "section": "Social",
+      "members": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    },
+    {
+      "id": 5,
+      "name": "product-updates",
+      "description": "Product releases and feature announcements",
+      "is_private": false,
+      "created_by": 3,
+      "topic": "Q4 2025 Roadmap",
+      "purpose": "Product announcements and feature discussions",
+      "section": "Product",
+      "members": [1, 2, 3, 5, 8, 9, 11, 13]
+    },
+    {
+      "id": 6,
+      "name": "devops",
+      "description": "Infrastructure, deployment, and operations",
+      "is_private": false,
+      "created_by": 4,
+      "topic": "Migration to Kubernetes complete ✅",
+      "purpose": "DevOps discussions, deployments, and infrastructure",
+      "section": "Engineering",
+      "members": [2, 4, 8, 10, 14]
+    },
+    {
+      "id": 7,
+      "name": "qa-testing",
+      "description": "Quality assurance and testing coordination",
+      "is_private": false,
+      "created_by": 7,
+      "topic": "Testing sprint 23 features",
+      "purpose": "QA coordination, bug reports, and testing strategies",
+      "section": "Engineering",
+      "members": [1, 2, 6, 7, 8, 12]
+    },
+    {
+      "id": 8,
+      "name": "leadership",
+      "description": "Leadership team private discussions",
+      "is_private": true,
+      "created_by": 8,
+      "topic": "Q4 Planning",
+      "purpose": "Strategic planning and leadership discussions",
+      "section": "Management",
+      "members": [3, 8, 13]
+    },
+    {
+      "id": 9,
+      "name": "security",
+      "description": "Security discussions and incident response",
+      "is_private": true,
+      "created_by": 10,
+      "topic": "Security audit in progress",
+      "purpose": "Security updates, vulnerability management, and incident response",
+      "section": "Engineering",
+      "members": [4, 8, 10, 14]
+    },
+    {
+      "id": 10,
+      "name": "help-desk",
+      "description": "Ask questions and get help from the team",
+      "is_private": false,
+      "created_by": 8,
+      "topic": "How can we help you today?",
+      "purpose": "Technical support and team assistance",
+      "section": "Support",
+      "members": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    }
+  ],
+  "user_groups": [
+    {
+      "id": 1,
+      "name": "Developers",
+      "handle": "@developers",
+      "description": "All software developers in the company",
+      "created_by": 8,
+      "members": [1, 2, 6, 12]
+    },
+    {
+      "id": 2,
+      "name": "Engineering Team",
+      "handle": "@engineering",
+      "description": "Complete engineering team including DevOps and QA",
+      "created_by": 8,
+      "members": [1, 2, 4, 6, 7, 10, 12, 14]
+    },
+    {
+      "id": 3,
+      "name": "Product Team",
+      "handle": "@product",
+      "description": "Product managers and business analysts",
+      "created_by": 3,
+      "members": [3, 13]
+    },
+    {
+      "id": 4,
+      "name": "Design Team",
+      "handle": "@design",
+      "description": "UX/UI designers",
+      "created_by": 5,
+      "members": [5]
+    },
+    {
+      "id": 5,
+      "name": "Leadership",
+      "handle": "@leadership",
+      "description": "Company leadership and management",
+      "created_by": 8,
+      "members": [3, 8]
+    },
+    {
+      "id": 6,
+      "name": "Backend Team",
+      "handle": "@backend",
+      "description": "Backend developers",
+      "created_by": 2,
+      "members": [2, 4, 14]
+    },
+    {
+      "id": 7,
+      "name": "Frontend Team",
+      "handle": "@frontend",
+      "description": "Frontend developers",
+      "created_by": 1,
+      "members": [1, 6]
+    },
+    {
+      "id": 8,
+      "name": "Data Team",
+      "handle": "@data",
+      "description": "Data scientists and analysts",
+      "created_by": 9,
+      "members": [9, 13]
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "channel_id": 1,
+      "user_id": 8,
+      "content": "Welcome everyone to our Slack workspace! 🎉 Excited to have the whole team here.",
+      "timestamp": "2025-11-01T09:00:00Z"
+    },
+    {
+      "id": 2,
+      "channel_id": 1,
+      "user_id": 1,
+      "content": "Thanks @william.brown! Happy to be here 👋",
+      "timestamp": "2025-11-01T09:05:00Z"
+    },
+    {
+      "id": 3,
+      "channel_id": 2,
+      "user_id": 1,
+      "content": "Starting the code review for the new dashboard. @developers please take a look when you have time.",
+      "timestamp": "2025-11-01T10:00:00Z"
+    },
+    {
+      "id": 4,
+      "channel_id": 2,
+      "user_id": 2,
+      "content": "Will review it this afternoon! 👍",
+      "timestamp": "2025-11-01T10:15:00Z"
+    },
+    {
+      "id": 5,
+      "channel_id": 4,
+      "user_id": 3,
+      "content": "Anyone up for coffee? ☕",
+      "timestamp": "2025-11-01T14:30:00Z"
+    },
+    {
+      "id": 6,
+      "channel_id": 4,
+      "user_id": 5,
+      "content": "I'm in! Meeting at the kitchen in 5?",
+      "timestamp": "2025-11-01T14:32:00Z"
+    },
+    {
+      "id": 7,
+      "channel_id": 3,
+      "user_id": 5,
+      "content": "New design mockups are ready for review in Figma. Check them out! 🎨",
+      "timestamp": "2025-11-01T11:00:00Z"
+    },
+    {
+      "id": 8,
+      "channel_id": 6,
+      "user_id": 4,
+      "content": "Deployment to staging completed successfully. Production deployment scheduled for tonight at 10 PM.",
+      "timestamp": "2025-11-01T16:00:00Z"
+    },
+    {
+      "id": 9,
+      "channel_id": 7,
+      "user_id": 7,
+      "content": "Found a bug in the login flow. Creating a ticket now. 🐛",
+      "timestamp": "2025-11-01T15:30:00Z"
+    },
+    {
+      "id": 10,
+      "channel_id": 10,
+      "user_id": 11,
+      "content": "Updated the API documentation. Let me know if anything is unclear!",
+      "timestamp": "2025-11-01T13:00:00Z"
+    }
+  ],
+  "direct_messages": [
+    {
+      "id": 1,
+      "sender_id": 1,
+      "receiver_id": 2,
+      "content": "Hey Michael! How's the backend API coming along?",
+      "timestamp": "2025-11-02T09:30:00Z"
+    },
+    {
+      "id": 2,
+      "sender_id": 2,
+      "receiver_id": 1,
+      "content": "Hi Sarah! It's going well. Just finished the authentication endpoints. Want to test them out?",
+      "timestamp": "2025-11-02T09:32:00Z"
+    },
+    {
+      "id": 3,
+      "sender_id": 1,
+      "receiver_id": 2,
+      "content": "Absolutely! I'll test them with the new login flow I built.",
+      "timestamp": "2025-11-02T09:35:00Z"
+    },
+    {
+      "id": 4,
+      "sender_id": 1,
+      "receiver_id": 5,
+      "content": "Olivia, can you review the dashboard design? Need your expert opinion! 🎨",
+      "timestamp": "2025-11-02T10:00:00Z"
+    },
+    {
+      "id": 5,
+      "sender_id": 5,
+      "receiver_id": 1,
+      "content": "Of course! Sending you the revised mockups in 10 minutes.",
+      "timestamp": "2025-11-02T10:05:00Z"
+    },
+    {
+      "id": 6,
+      "sender_id": 5,
+      "receiver_id": 1,
+      "content": "Here are the updated designs with the new color palette we discussed. Let me know what you think!",
+      "timestamp": "2025-11-02T10:15:00Z"
+    },
+    {
+      "id": 7,
+      "sender_id": 3,
+      "receiver_id": 1,
+      "content": "Sarah, quick question about the user stories for Sprint 12. Do you have a minute?",
+      "timestamp": "2025-11-02T11:20:00Z"
+    },
+    {
+      "id": 8,
+      "sender_id": 1,
+      "receiver_id": 3,
+      "content": "Sure Emma! What's up?",
+      "timestamp": "2025-11-02T11:22:00Z"
+    },
+    {
+      "id": 9,
+      "sender_id": 3,
+      "receiver_id": 1,
+      "content": "Just need clarification on the analytics dashboard requirements. Can we jump on a quick call?",
+      "timestamp": "2025-11-02T11:25:00Z"
+    },
+    {
+      "id": 10,
+      "sender_id": 2,
+      "receiver_id": 4,
+      "content": "James, the CI/CD pipeline is failing. Can you take a look?",
+      "timestamp": "2025-11-02T14:00:00Z"
+    },
+    {
+      "id": 11,
+      "sender_id": 4,
+      "receiver_id": 2,
+      "content": "On it! Looks like a Docker image issue. Fixing now. 🔧",
+      "timestamp": "2025-11-02T14:05:00Z"
+    },
+    {
+      "id": 12,
+      "sender_id": 4,
+      "receiver_id": 2,
+      "content": "Fixed! The pipeline should be green now.",
+      "timestamp": "2025-11-02T14:15:00Z"
+    },
+    {
+      "id": 13,
+      "sender_id": 1,
+      "receiver_id": 6,
+      "content": "Daniel, are you available for a code review this afternoon?",
+      "timestamp": "2025-11-02T13:00:00Z"
+    },
+    {
+      "id": 14,
+      "sender_id": 6,
+      "receiver_id": 1,
+      "content": "I'm in deep work mode until 3 PM, but free after that!",
+      "timestamp": "2025-11-02T13:10:00Z"
+    },
+    {
+      "id": 15,
+      "sender_id": 1,
+      "receiver_id": 6,
+      "content": "Perfect! Let's meet at 3:30 PM then.",
+      "timestamp": "2025-11-02T13:12:00Z"
+    }
+  ],
+  "contacts": [
+    {
+      "user_id": 1,
+      "contact_ids": [2, 5, 6, 8]
+    },
+    {
+      "user_id": 2,
+      "contact_ids": [1, 4, 6]
+    },
+    {
+      "user_id": 3,
+      "contact_ids": [5, 8, 13]
+    },
+    {
+      "user_id": 5,
+      "contact_ids": [1, 3]
+    },
+    {
+      "user_id": 8,
+      "contact_ids": [1, 2, 3, 4, 7]
+    }
+  ]
+}

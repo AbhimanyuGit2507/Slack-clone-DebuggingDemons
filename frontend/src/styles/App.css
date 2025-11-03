@@ -1,0 +1,10 @@
+.main-container {
+  display: flex;
+  height: calc(100vh - 44px);
+  position: fixed;
+  top: 44px;
+  left: 72px;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}

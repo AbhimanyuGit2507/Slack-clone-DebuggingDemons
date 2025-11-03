@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+SQLAlchemy
+pydantic>=2.0
+pydantic[email]
+passlib[bcrypt]
+python-multipart
+python-dotenv
+requests

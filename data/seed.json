@@ -1,0 +1,15 @@
+{
+  "users": [
+    {"id": 1, "name": "alice", "status": "online"},
+    {"id": 2, "name": "bob", "status": "away"}
+  ],
+  "channels": [
+    {"id": 1, "name": "general", "members": [1,2]},
+    {"id": 2, "name": "random", "members": [1]}
+  ],
+  "messages": [
+    {"id": 1, "channel_id": 1, "user_id": 1, "content": "Welcome to general!", "timestamp": "2025-11-01T09:00:00Z"},
+    {"id": 2, "channel_id": 1, "user_id": 2, "content": "Hi Alice 👋", "timestamp": "2025-11-01T09:01:00Z"},
+    {"id": 3, "channel_id": 2, "user_id": 1, "content": "Random thought of the day.", "timestamp": "2025-11-01T09:02:00Z"}
+  ]
+}

@@ -1,0 +1,799 @@
+.hover-card {
+  background: #1a1d21;
+  border: 1px solid #3a3d41;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  min-width: 260px;
+  max-width: 320px;
+  pointer-events: auto;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* DMs Card */
+.dm-hover-card {
+  padding: 16px;
+}
+
+.dm-hover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.dm-hover-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: white;
+  margin: 0;
+}
+
+.unread-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.toggle-switch {
+  width: 36px;
+  height: 20px;
+  background: #52525b;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle-switch.active {
+  background: #007a5a;
+}
+
+.toggle-switch-knob {
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: left 0.2s;
+}
+
+.toggle-switch.active .toggle-switch-knob {
+  left: 18px;
+}
+
+.dm-hover-notice-box {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.dm-hover-notice-icon {
+  color: #1d9bd1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.dm-hover-notice-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.46668;
+}
+
+.dm-hover-notice-text strong {
+  color: white;
+  font-weight: 700;
+}
+
+.dm-hover-button {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  transition: all 0.2s;
+}
+
+.dm-hover-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dm-hover-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dm-hover-list {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 12px;
+}
+
+.dm-hover-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.08s;
+  margin-bottom: 1px;
+}
+
+.dm-hover-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dm-hover-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dm-hover-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.dm-hover-name span {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dm-hover-preview {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.38463;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dm-hover-time {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  flex-shrink: 0;
+}
+
+.dm-hover-status {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: #007a5a;
+  border: 2px solid #1a1d21;
+  border-radius: 50%;
+}
+
+.dm-hover-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 900;
+  font-size: 14px;
+  flex-shrink: 0;
+  position: relative;
+  background: #4a154b;
+}
+
+.dm-hover-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.dm-hover-name span {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dm-hover-preview {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.dm-hover-time {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
+.dm-hover-footer {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dm-hover-footer-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.08s;
+}
+
+.dm-hover-footer-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dm-hover-footer-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.dm-hover-footer-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+}
+
+/* Activity Card */
+.activity-hover-card {
+  padding: 16px;
+}
+
+.activity-hover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.activity-hover-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: white;
+  margin: 0;
+}
+
+.activity-hover-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.activity-hover-toggle-label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  order: 2;
+}
+
+.activity-hover-item {
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.08s;
+  margin-bottom: 2px;
+}
+
+.activity-hover-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.activity-hover-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.activity-hover-chevron {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.activity-hover-type {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 700;
+}
+
+.activity-hover-date {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: auto;
+}
+
+.activity-hover-item-content {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.activity-hover-avatar-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.activity-hover-text {
+  flex: 1;
+}
+
+.activity-hover-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.activity-hover-message {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.46668;
+}
+
+.activity-hover-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.activity-hover-item-icon {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.activity-hover-item-type {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+.activity-hover-item-time {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: auto;
+}
+
+.activity-hover-item-content {
+  display: flex;
+  gap: 12px;
+}
+
+.activity-hover-item-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.activity-hover-item-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.activity-hover-item-text {
+  flex: 1;
+}
+
+.activity-hover-item-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 4px 0;
+}
+
+.activity-hover-item-message {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Files Card */
+.files-hover-card {
+  padding: 16px;
+}
+
+.files-hover-header {
+  font-size: 22px;
+  font-weight: 900;
+  color: white;
+  margin: 0 0 12px 0;
+}
+
+.files-hover-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.files-hover-btn {
+  background: #2c2d30;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.files-hover-btn:hover {
+  background: #3a3c40;
+}
+
+.files-hover-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.files-hover-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.files-hover-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.files-hover-item-icon {
+  width: 40px;
+  height: 40px;
+  background: #1d9bd1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.files-hover-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.files-hover-item-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 2px 0;
+}
+
+.files-hover-item-badge {
+  display: inline-block;
+  background: #1264a3;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.files-hover-item-time {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* More Card */
+.more-hover-card {
+  padding: 16px;
+  min-width: 360px;
+}
+
+.more-hover-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: white;
+  margin: 0 0 16px 0;
+}
+
+.more-hover-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.more-hover-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.more-hover-item-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #8b4a9e 0%, #6b2d7a 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.more-hover-item-info {
+  flex: 1;
+}
+
+.more-hover-item-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 4px 0;
+}
+
+.more-hover-item-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.more-hover-footer {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.more-hover-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: #1d9bd1;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.more-hover-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Workspace Card */
+.workspace-hover-card {
+  padding: 16px;
+}
+
+.workspace-hover-header {
+  font-size: 22px;
+  font-weight: 900;
+  color: white;
+  margin: 0 0 12px 0;
+}
+
+.workspace-hover-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.08s;
+  margin-bottom: 2px;
+}
+
+.workspace-hover-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.workspace-hover-item-active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.workspace-hover-icon {
+  width: 36px;
+  height: 36px;
+  background: #4a154b;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 900;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.workspace-hover-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.workspace-hover-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+
+.workspace-hover-members {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.38463;
+}
+
+.workspace-hover-add {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.08s;
+  margin-top: 4px;
+}
+
+.workspace-hover-add:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.workspace-hover-add-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.workspace-hover-add-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+}
+
+/* Compact Files Card Styles */
+.files-hover-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.files-hover-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #3a3c40;
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.08s;
+}
+
+.files-hover-button:hover {
+  background: #4a4c50;
+}
+
+.files-hover-list {
+  max-height: 350px;
+  overflow-y: auto;
+  margin: 0 -4px;
+  padding: 0 4px;
+}
+
+.files-hover-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.files-hover-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.files-hover-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.files-hover-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.files-hover-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.08s;
+  margin-bottom: 1px;
+}
+
+.files-hover-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.files-hover-icon {
+  width: 40px;
+  height: 40px;
+  background: #1d9bd1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.files-hover-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.files-hover-name {
+  font-size: 15px;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.files-hover-meta {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.38463;
+}
+
+.files-hover-badge {
+  display: inline-block;
+  background: #1264a3;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}

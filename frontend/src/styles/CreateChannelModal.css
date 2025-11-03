@@ -1,0 +1,139 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #1a1d21;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 1008px;
+  height: 560px;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.modal-layout {
+  display: flex;
+  height: 100%;
+}
+
+.modal-sidebar {
+  width: 220px;
+  background: #222529;
+  border-right: 1px solid #3a3d41;
+  padding: 30px 16px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-sidebar h2 {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+}
+
+.template-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+}
+
+.template-item {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 0;
+  transition: background 0.2s;
+}
+
+.template-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.template-item.active {
+  background: #7D3986;
+  color: white;
+}
+
+.show-all-link {
+  color: #1d9bd1;
+  font-size: 13px;
+  text-decoration: none;
+  padding: 9px 12px;
+  display: block;
+}
+
+.show-all-link:hover {
+  text-decoration: underline;
+}
+
+.modal-next-btn {
+  background: #007a5a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.modal-next-btn:hover {
+  background: #006644;
+}
+
+.modal-preview {
+  flex: 1;
+  background: #200221;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.preview-image {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+}
