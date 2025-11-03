@@ -3,14 +3,24 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .database import engine, Base
-from .config import settings
-from .routes import (
-    messages, channels, users, auth, direct_messages, search, attachments,
-    notifications, pins, bookmarks, activity, drafts, scheduled_messages,
-    user_groups, custom_emojis, canvas, workflows, permalinks, calls
-)
-from . import models
+try:
+    from .database import engine, Base
+    from .config import settings
+    from .routes import (
+        messages, channels, users, auth, direct_messages, search, attachments,
+        notifications, pins, bookmarks, activity, drafts, scheduled_messages,
+        user_groups, custom_emojis, canvas, workflows, permalinks, calls
+    )
+    from . import models
+except ImportError:
+    from database import engine, Base
+    from config import settings
+    from routes import (
+        messages, channels, users, auth, direct_messages, search, attachments,
+        notifications, pins, bookmarks, activity, drafts, scheduled_messages,
+        user_groups, custom_emojis, canvas, workflows, permalinks, calls
+    )
+    import models
 
 app = FastAPI(title=settings.APP_NAME)
 
