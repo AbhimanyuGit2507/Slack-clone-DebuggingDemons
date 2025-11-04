@@ -1,0 +1,16 @@
+.reaction-bar{ display:flex; align-items:center; gap:6px; margin-top:3px }
+.reaction-list{ display:flex; gap:4px; align-items:center }
+.reaction-bar{ display:flex; align-items:center; gap:6px; margin-top:3px }
+.reaction-pill{ background:#1A1D21; color:#fff; border-radius:16px; padding:2px 6px; border:1px solid rgba(255,255,255,0.12); display:inline-flex; align-items:center; gap:4px; font-size:13px; box-sizing:border-box }
+.reaction-emoji{ font-size:13px }
+.reaction-count{ opacity:0.95; font-weight:600; margin-left:2px }
+.reaction-action{ position:relative }
+.reaction-add-btn{ background:transparent; border:none; color:rgba(255,255,255,0.8); padding:2px }
+.emoji-picker{ position:absolute; bottom:36px; right:0; background:#2a2c2f; border-radius:8px; padding:6px; display:flex; gap:4px; flex-wrap:wrap; box-shadow:0 6px 18px rgba(0,0,0,0.4) }
+.emoji-btn{ background:transparent; border:none; font-size:16px; padding:4px; cursor:pointer; box-sizing:border-box; line-height:1 }
+.emoji-custom input{ background:#fff; border-radius:6px; padding:6px; border:none; min-width:120px }
+
+.reaction-hover{ position:absolute; right:8px; top:-4px; display:flex; align-items:center; z-index:60 }
+.reaction-hover-list{ display:flex; gap:4px; align-items:center; background:transparent; width:auto; min-width:160px; max-width:640px; border:1px solid rgba(255,255,255,0.12); padding:4px 6px; border-radius:10px; white-space:nowrap; overflow:hidden }
+.hover-emoji{ font-size:16px; padding:4px; background:transparent; border-radius:6px }
+

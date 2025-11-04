@@ -8,13 +8,14 @@ echo "Starting Slack Clone Backend..."
 mkdir -p /app/uploads
 mkdir -p /app/data
 
-# Check if database exists, if not create it
-if [ ! -f "/app/slack.db" ]; then
-    echo "Database not found. Initializing with sample data..."
+# Determine DB path used by the app (matches backend/database.py default)
+DB_FILE=/app/data/slack_rl.db
+if [ ! -f "$DB_FILE" ]; then
+    echo "Database not found at $DB_FILE. Initializing tables..."
     python seed.py
     echo "Database initialized successfully!"
 else
-    echo "Database already exists. Skipping initialization."
+    echo "Database already exists at $DB_FILE. Skipping initialization."
 fi
 
 # Start the application

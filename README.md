@@ -2,26 +2,38 @@
 
 **Team: DebuggingDemons**
 
-A high-fidelity, full-stack Slack clone built with React and FastAPI, featuring real-time messaging, channels, direct messages, canvas collaboration, and file sharing.
+A high-fidelity, full-stack Slack clone built with React and FastAPI, featuring real-time messaging, channels, direct messages, canvas collaboration.
 
 ---
 
-## 🚀 Quick Start (3 Commands)
+## Judge quick start (recommended)
 
-```bash
+These steps will build and run both the frontend and backend containers using Docker Compose. The included `docker-compose.yml` is configured so the frontend (nginx) proxies `/api/*` to the backend service automatically — no extra configuration is required for a local judge run.
+
+From repository root:
+
+```powershell
 # 1. Clone the repository
 git clone https://github.com/AbhimanyuGit2507/Slack-clone-DebuggingDemons.git
 
 # 2. Enter the project directory
 cd Slack-clone-DebuggingDemons
 
-# 3. Start with Docker (installs everything automatically)
-docker-compose up --build
+# 3. Build and start the app
+docker compose up --build -d
+
+# 4. Tail logs (optional)
+docker compose logs -f --tail=200 backend frontend
 ```
 
-**Then open:** http://localhost:5173
+Open the frontend in a browser: http://localhost:3000
 
-✅ **That's it!** Database will be automatically created and seeded with sample data.
+Notes:
+- Frontend (nginx) is served on host port 3000 and proxies `/api` to the backend container internally.
+- Backend API is available on host port 8000 (http://localhost:8000/docs for FastAPI docs).
+- Database and uploads persist to `./data` and `./uploads` on the host (see `docker-compose.yml`).
+
+The backend startup script will seed the database the first time the container runs. If you'd like to reset data, stop the compose stack and remove `./data` then restart.
 
 ---
 
@@ -32,7 +44,6 @@ This project is a **high-fidelity fullstack clone of Slack**, built as part of t
 
 
 ## 🎯 Assignment Objectives
-
 
 
 This assignment evaluates the following capabilities:## 🚀 FeaturesOverview

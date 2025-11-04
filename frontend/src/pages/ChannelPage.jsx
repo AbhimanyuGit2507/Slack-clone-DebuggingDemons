@@ -6,6 +6,7 @@ import { StarIcon, HeadphonesIcon, SearchIcon, BoldIcon, ItalicIcon, SendIcon, P
 import api from '../api/axios'
 import Canvas from '../components/Canvas'
 import RichTextComposer from '../components/RichTextComposer'
+import ReactionBar from '../components/ReactionBar'
 import usePageTitle from '../hooks/usePageTitle'
 import '../styles/ChannelPage.css'
 
@@ -14,6 +15,7 @@ export default function ChannelPage({ channelId }){
   const channelName = channelId || params.name
   const [messages, setMessages] = useState([])
   const [channel, setChannel] = useState({ name: 'new-channel', id: 1 })
+  const [hoveredMessageId, setHoveredMessageId] = useState(null)
   
   usePageTitle(`#${channel?.name || 'channel'}`)
   const [activeTab, setActiveTab] = useState('messages')
@@ -439,7 +441,10 @@ export default function ChannelPage({ channelId }){
           </div>
 
           {messages.map(msg => (
-            <div key={msg.id} className={`message ${msg.is_system_message ? 'system-message' : ''}`}>
+      <div key={msg.id} className={`message ${msg.is_system_message ? 'system-message' : ''}`}
+        style={{ position: 'relative' }}
+        onMouseEnter={() => setHoveredMessageId(msg.id)}
+        onMouseLeave={() => setHoveredMessageId(prev => prev === msg.id ? null : prev)}>
               {msg.user?.profile_picture || msg.user?.avatar_url ? (
                 <img 
                   src={msg.user.profile_picture || msg.user.avatar_url} 
@@ -461,6 +466,9 @@ export default function ChannelPage({ channelId }){
                 ) : (
                   <p className="message-text">{msg.content}</p>
                 )}
+                {/* Reaction bar shown under each message. The hover picker appears when the
+                    message is hovered; the inline pills are shown only if reactions exist. */}
+                <ReactionBar messageId={msg.id} onChange={fetchMessages} isHovered={hoveredMessageId === msg.id} />
               </div>
             </div>
           ))}

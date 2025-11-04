@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { ArrowLeftIcon, SearchIcon, ArrowRightIcon, HelpIcon, HistoryIcon } from './slack-icons'
-import { X, Info, Settings, MessageSquare } from 'lucide-react'
+import { X, Info, Settings, MessageSquare, User } from 'lucide-react'
 import api from '../api/axios'
 import '../styles/TopNav.css'
+import UserPopup from './UserPopup'
 
 export default function TopNav() {
   const navigate = useNavigate()
@@ -15,6 +16,7 @@ export default function TopNav() {
   
   // Search states
   const [showSearchModal, setShowSearchModal] = useState(false)
+  const [showUserPopup, setShowUserPopup] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState({ channels: [], users: [], messages: [] })
   const [isSearching, setIsSearching] = useState(false)
@@ -215,6 +217,12 @@ export default function TopNav() {
         </div>
         <div className="nav-right">
           <button className="help-btn"><HelpIcon size={20} /></button>
+          <div style={{ position: 'relative' }}>
+            <button className="nav-btn" title="Account" onClick={() => setShowUserPopup(!showUserPopup)}>
+              <User size={18} />
+            </button>
+            <UserPopup visible={showUserPopup} onClose={() => setShowUserPopup(false)} />
+          </div>
         </div>
       </div>
 

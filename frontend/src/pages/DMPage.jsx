@@ -7,6 +7,7 @@ import api from '../api/axios'
 import ResizableHandleRight from '../components/ResizableHandleRight'
 import Canvas from '../components/Canvas'
 import RichTextComposer from '../components/RichTextComposer'
+import ReactionBar from '../components/ReactionBar'
 import usePageTitle from '../hooks/usePageTitle'
 import '../styles/DMPage.css'
 
@@ -15,6 +16,7 @@ export default function DMPage({ userId }){
   const id = userId || params.id
   const [messages, setMessages] = useState([])
   const [contact, setContact] = useState(null)
+  const [hoveredMessageId, setHoveredMessageId] = useState(null)
   
   usePageTitle(contact?.username || 'DM')
   const [showProfile, setShowProfile] = useState(false)
@@ -201,7 +203,9 @@ export default function DMPage({ userId }){
           </div>
 
           {messages.map(msg => (
-            <div key={msg.id} className="message">
+            <div key={msg.id} className="message" style={{ position: 'relative' }}
+                 onMouseEnter={() => setHoveredMessageId(msg.id)}
+                 onMouseLeave={() => setHoveredMessageId(prev => prev === msg.id ? null : prev)}>
               <div className="message-avatar">
                 {msg.user?.profile_picture ? (
                   <img src={msg.user.profile_picture} alt={msg.user.name} style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px'}} />
@@ -219,6 +223,8 @@ export default function DMPage({ userId }){
                 ) : (
                   <p className="message-text">{msg.content}</p>
                 )}
+                {/* Reaction bar for DMs */}
+                <ReactionBar messageId={msg.id} onChange={fetchMessages} isHovered={hoveredMessageId === msg.id} />
               </div>
             </div>
           ))}

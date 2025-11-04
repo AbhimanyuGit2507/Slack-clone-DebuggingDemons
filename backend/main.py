@@ -4,7 +4,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import engine, Base
-print("hi there!")
 from .config import settings
 from .routes import (
     messages, channels, users, auth, direct_messages, search, attachments,
@@ -18,8 +17,7 @@ app = FastAPI(title=settings.APP_NAME)
 # CORS for Vite dev server
 app.add_middleware(
     CORSMiddleware,
-    # Temporary: allow all origins for debugging deployment issues (revert before production)
-    allow_origins=["*"],
+    allow_origins=settings.CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

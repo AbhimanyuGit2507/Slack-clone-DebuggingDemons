@@ -95,7 +95,7 @@ DEBUG=False
 DATABASE_URL=sqlite:///./data/slack_rl.db
 SECRET_KEY=your-secret-key-change-this-in-production
 SESSION_EXPIRY_HOURS=24
-CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+CORS_ORIGINS=http://localhost:3000
 HOST=0.0.0.0
 PORT=8000
 ```

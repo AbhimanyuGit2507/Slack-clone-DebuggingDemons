@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Wrench, User, UserPlus } from 'lucide-react'
 import { HomeIcon, PlusIcon, BellIcon, DirectMessagesIcon, ChevronDownIcon, MoreHorizontalIcon, ChevronRightIcon, MessageIcon, FilesIcon } from './slack-icons'
 import '../styles/IconNav.css'
+import UserPopup from './UserPopup'
 
 export default function IconNav() {
   const location = useLocation()
@@ -13,6 +14,10 @@ export default function IconNav() {
   const [unreadActivityOnly, setUnreadActivityOnly] = useState(false)
   const moreButtonRef = useRef(null)
   const hoverTimeoutRef = useRef(null)
+  const [showUserPopup, setShowUserPopup] = useState(false)
+  const accountBtnRef = useRef(null)
+  const [popupStyle, setPopupStyle] = useState({ left: '72px', right: 'auto', top: '8px', zIndex: 10001 })
+  
 
   // Close popup when route changes
   useEffect(() => {
@@ -328,9 +333,21 @@ export default function IconNav() {
         <button className="slim-nav-item">
           <PlusIcon size={24} />
         </button>
-        <Link to="/profile" className="slim-nav-item">
-          <User size={24} />
-        </Link>
+        <div style={{ position: 'relative' }}>
+          <button ref={accountBtnRef} className="slim-nav-item" onClick={() => {
+            // compute popup top so the popup's bottom aligns with the button bottom
+            const btn = accountBtnRef.current
+            if (btn) {
+              const popupH = 305
+              const topPx = btn.offsetTop + btn.offsetHeight - popupH
+              setPopupStyle({ left: '72px', right: 'auto', top: `${topPx}px`, zIndex: 10001 })
+            }
+            setShowUserPopup(s => !s)
+          }} title="Account">
+            <User size={24} />
+          </button>
+          <UserPopup visible={showUserPopup} onClose={() => setShowUserPopup(false)} style={popupStyle} />
+        </div>
       </div>
     </nav>
   )

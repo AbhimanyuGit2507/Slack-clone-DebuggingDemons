@@ -1,0 +1,41 @@
+.user-popup{
+  position: absolute;
+  right: 16px;
+  top: 56px;
+  width: 300px;
+  height: 305px;
+  background: #212428;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  color: #fff;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-popup-inner{
+  padding: 12px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.user-popup-header{ display:flex; gap:8px; align-items:center; margin-bottom:8px }
+.user-popup-avatar img{ width:56px; height:56px; border-radius: 50%; object-fit: cover; }
+.user-popup-avatar{ width:56px; height:56px; border-radius:50%; background:#2b2d30; display:flex; align-items:center; justify-content:center; }
+.user-initial{ font-size:22px; font-weight:700; color:#fff }
+.user-popup-info{ display:flex; flex-direction:column }
+.user-popup-name{ font-size:15px; font-weight:700; color:#fff }
+.user-popup-status{ font-size:12px; color:#9bbf6b; margin-top:4px }
+.user-popup-status-box{ margin:6px 0; background:#1A1D21; border-radius:8px; padding:8px; display:flex; gap:8px; align-items:center }
+.status-emoji{ font-size:16px }
+.status-input{ background:transparent; border:none; outline:none; color:#fff; width:100%; font-size:13px }
+.user-popup-menu{ list-style:none; padding:0; margin:6px 0 0 0; display:flex; flex-direction:column; gap:6px }
+.user-popup-menu li{ padding:4px 4px; color:#e6e6e6; cursor:pointer; border-radius:6px; font-size:14px }
+.user-popup-menu li:hover{ background: rgba(255,255,255,0.02) }
+.user-popup-menu .chev{ float:right; color:#bdbdbd }
+.user-popup-menu .signout{ margin-top:6px; border-top:1px solid rgba(255,255,255,0.03); padding-top:8px; color:#fff; font-weight:600 }
+.user-popup-loading{ color:#c6c8ca }
+.user-popup-menu .menu-divider{ height:1px; background:rgba(255,255,255,0.04); margin:6px 0; list-style:none; padding:0 }
