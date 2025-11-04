@@ -12,7 +12,8 @@ mkdir -p /app/data
 DB_FILE=/app/data/slack_rl.db
 if [ ! -f "$DB_FILE" ]; then
     echo "Database not found at $DB_FILE. Initializing tables..."
-    python seed.py
+    # run seeder from repository root
+    python backend/seed.py
     echo "Database initialized successfully!"
 else
     echo "Database already exists at $DB_FILE. Skipping initialization."
@@ -22,4 +23,5 @@ fi
 echo "Starting Uvicorn server..."
 # Use PORT environment variable from Render, default to 8000
 PORT=${PORT:-8000}
-exec uvicorn main:app --host 0.0.0.0 --port $PORT
+# Run uvicorn with the package module path so relative imports work
+exec uvicorn backend.main:app --host 0.0.0.0 --port $PORT

@@ -26,4 +26,4 @@ ENV PORT=8000
 EXPOSE 8000
 
 # use startup script so database seeding runs at container start and PORT env is honored
-CMD ["sh","-c","cd backend && chmod +x ./start.sh && ./start.sh"]
+CMD ["sh","-c","chmod +x ./backend/start.sh && sed -i 's/\\r$//' ./backend/start.sh || true && ./backend/start.sh"]

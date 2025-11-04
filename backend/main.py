@@ -3,14 +3,27 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .database import engine, Base
-from .config import settings
-from .routes import (
-    messages, channels, users, auth, direct_messages, search, attachments,
-    notifications, pins, bookmarks, activity, drafts, scheduled_messages,
-    user_groups, custom_emojis, canvas, workflows, permalinks, calls
-)
-from . import models
+try:
+    # Preferred: relative imports when package context is available
+    from .database import engine, Base
+    from .config import settings
+    from .routes import (
+        messages, channels, users, auth, direct_messages, search, attachments,
+        notifications, pins, bookmarks, activity, drafts, scheduled_messages,
+        user_groups, custom_emojis, canvas, workflows, permalinks, calls
+    )
+    from . import models
+except Exception:
+    # Fallback: absolute imports (works if code is executed without package context)
+    # This makes the app more tolerant when uvicorn is invoked incorrectly
+    from backend.database import engine, Base
+    from backend.config import settings
+    from backend.routes import (
+        messages, channels, users, auth, direct_messages, search, attachments,
+        notifications, pins, bookmarks, activity, drafts, scheduled_messages,
+        user_groups, custom_emojis, canvas, workflows, permalinks, calls
+    )
+    import backend.models as models
 
 app = FastAPI(title=settings.APP_NAME)
 

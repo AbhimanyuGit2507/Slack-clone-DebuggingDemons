@@ -304,7 +304,9 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
    # Mac/Linux```bash
 
-   python3 -m venv venvuvicorn main:app --reload
+   python3 -m venv venv
+   # run from repo root
+   uvicorn backend.main:app --reload
 
    source venv/bin/activate```
 
@@ -336,7 +338,8 @@ The API will be available at `http://localhost:8000`
 
    ```bash```
 
-   uvicorn main:app --reload --host 0.0.0.0 --port 8000
+   # run from repo root so relative imports work
+   uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 
    ```3. Start the development server:
 
