@@ -202,3 +202,97 @@
   background: rgba(255, 255, 255, 0.1);
   text-decoration: underline;
 }
+
+/* DM Hover Card */
+.dm-hover-card, .activity-hover-card, .files-hover-card, .workspace-hover-card {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+
+.dm-hover-list, .activity-hover-list {
+  max-height: 360px;
+  overflow: auto;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dm-hover-item, .activity-hover-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.dm-hover-item:hover, .activity-hover-item:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.dm-hover-avatar, .activity-hover-avatar-img, .activity-hover-avatar-img img {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #2b2b2b;
+  color: #fff;
+  font-weight: 600;
+}
+
+.dm-hover-avatar img, .activity-hover-avatar-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dm-hover-info, .activity-hover-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.dm-hover-name, .activity-hover-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dm-hover-preview, .activity-hover-message {
+  font-size: 12px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.2;
+  max-height: 2.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dm-hover-time, .activity-hover-date {
+  margin-left: auto;
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+}
+
+.activity-hover-item-content {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.activity-hover-item-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+}

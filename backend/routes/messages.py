@@ -457,28 +457,40 @@ def get_reactions(
     current_user: models.User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Get all reactions for a message"""
-    # Verify message exists
+    """Get all reactions for a message or direct message"""
+    # Check if the message is a channel message
     msg = db.query(models.Message).filter(models.Message.id == message_id).first()
-    if not msg:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Message not found"
-        )
-    
-    # Verify user has access to the channel
-    channel = msg.channel
-    if channel.is_private and current_user not in channel.members:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="You don't have access to this channel"
-        )
-    
-    reactions = db.query(models.Reaction).filter(
-        models.Reaction.message_id == message_id
-    ).order_by(models.Reaction.timestamp.asc()).all()
-    
-    return reactions
+    if msg:
+        # Verify user has access to the channel
+        channel = msg.channel
+        if channel.is_private and current_user not in channel.members:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="You don't have access to this channel"
+            )
+        reactions = db.query(models.Reaction).filter(
+            models.Reaction.message_id == message_id
+        ).order_by(models.Reaction.timestamp.asc()).all()
+        return reactions
+
+    # Check if the message is a direct message
+    dm = db.query(models.DirectMessage).filter(models.DirectMessage.id == message_id).first()
+    if dm:
+        # Verify user is either the sender or receiver
+        if current_user.id not in [dm.sender_id, dm.receiver_id]:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="You don't have access to this direct message"
+            )
+        reactions = db.query(models.Reaction).filter(
+            models.Reaction.message_id == message_id
+        ).order_by(models.Reaction.timestamp.asc()).all()
+        return reactions
+
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail="Message not found"
+    )
 
 @router.delete("/reactions/{reaction_id}", status_code=status.HTTP_204_NO_CONTENT)
 def remove_reaction(

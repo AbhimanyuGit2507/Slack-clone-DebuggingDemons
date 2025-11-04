@@ -30,7 +30,7 @@ app = FastAPI(title=settings.APP_NAME)
 # CORS for Vite dev server
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
+    allow_origins=["http://localhost:5173"],  # Replace * with the frontend's origin
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -193,6 +193,26 @@ def startup():
                         contacts = db.query(models.User).filter(models.User.id.in_(contact_ids)).all()
                         user.contacts_list = contacts
                 db.commit()
+
+                # activities (new)
+                for a in seed.get('activities', []):
+                    ts = None
+                    try:
+                        ts = datetime.fromisoformat(a.get('created_at').replace('Z', '+00:00'))
+                    except Exception:
+                        ts = datetime.utcnow()
+                    act = models.Activity(
+                        id=a.get('id'),
+                        user_id=a.get('user_id'),
+                        activity_type=a.get('activity_type'),
+                        description=a.get('description'),
+                        target_type=a.get('target_type'),
+                        target_id=a.get('target_id'),
+                        activity_metadata=json.dumps(a.get('activity_metadata', {})),
+                        created_at=ts
+                    )
+                    db.add(act)
+                db.commit()
                 
                 print(f"✅ Database seeded successfully from {os.path.basename(file_to_use)}")
                 print(f"   - {len(seed.get('users', []))} users")
@@ -200,5 +220,6 @@ def startup():
                 print(f"   - {len(seed.get('user_groups', []))} user groups")
                 print(f"   - {len(seed.get('messages', []))} messages")
                 print(f"   - {len(seed.get('direct_messages', []))} direct messages")
+                print(f"   - {len(seed.get('activities', []))} activities")
     finally:
         db.close()

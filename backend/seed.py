@@ -2,7 +2,10 @@
 Simple database initialization - creates tables only
 """
 
-from backend.database import engine, Base
+try:
+    from .database import engine, Base
+except ImportError:
+    from backend.database import engine, Base
 
 
 def init_db():

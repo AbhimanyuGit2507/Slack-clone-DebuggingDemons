@@ -4,6 +4,7 @@ import { Wrench, User, UserPlus } from 'lucide-react'
 import { HomeIcon, PlusIcon, BellIcon, DirectMessagesIcon, ChevronDownIcon, MoreHorizontalIcon, ChevronRightIcon, MessageIcon, FilesIcon } from './slack-icons'
 import '../styles/IconNav.css'
 import UserPopup from './UserPopup'
+import api from '../api/axios'
 
 export default function IconNav() {
   const location = useLocation()
@@ -12,6 +13,10 @@ export default function IconNav() {
   const [hoveredItem, setHoveredItem] = useState(null)
   const [unreadMessagesOnly, setUnreadMessagesOnly] = useState(false)
   const [unreadActivityOnly, setUnreadActivityOnly] = useState(false)
+  const [dmsList, setDmsList] = useState([])
+  const [activitiesList, setActivitiesList] = useState([])
+  const [loadingDms, setLoadingDms] = useState(false)
+  const [loadingActivities, setLoadingActivities] = useState(false)
   const moreButtonRef = useRef(null)
   const hoverTimeoutRef = useRef(null)
   const [showUserPopup, setShowUserPopup] = useState(false)
@@ -72,6 +77,71 @@ export default function IconNav() {
     e.stopPropagation() // Prevent click from bubbling to parent nav item
   }
 
+  // Load DMs when hovering over DMs panel
+  const loadDms = async () => {
+    if (loadingDms) return
+    setLoadingDms(true)
+    try {
+      const res = await api.get('/api/direct-messages/conversations')
+      setDmsList(res.data || [])
+    } catch (err) {
+      // If unauthenticated or error, fail silently and keep placeholders
+      console.debug('Failed to load DM conversations', err)
+    } finally {
+      setLoadingDms(false)
+    }
+  }
+
+  // Load activities when hovering over Activity panel
+  const loadActivities = async () => {
+    if (loadingActivities) return
+    setLoadingActivities(true)
+    try {
+      const res = await api.get('/api/activity/all')
+      setActivitiesList(res.data || [])
+    } catch (err) {
+      console.debug('Failed to load activities', err)
+    } finally {
+      setLoadingActivities(false)
+    }
+  }
+
+  useEffect(() => {
+    if (hoveredItem === 'dms' && dmsList.length === 0) {
+      loadDms()
+    }
+    if (hoveredItem === 'activity' && activitiesList.length === 0) {
+      loadActivities()
+    }
+  }, [hoveredItem])
+
+  const handleDmClick = (userId) => {
+    setHoveredItem(null)
+    navigate(`/dm/${userId}`)
+  }
+
+  const handleActivityClick = async (activity) => {
+    setHoveredItem(null)
+    if (!activity) return navigate('/activity')
+    try {
+      if (activity.contentType === 'dm') {
+        navigate(`/dm/${activity.contentId}`)
+        return
+      }
+      // contentId is channel id — fetch channel to get name
+      const ch = await api.get(`/api/channels/${activity.contentId}`)
+      const channelName = ch?.data?.name
+      if (channelName) {
+        navigate(`/channel/${channelName}`)
+        return
+      }
+    } catch (err) {
+      console.debug('Failed to open activity target', err)
+    }
+    // fallback
+    navigate('/activity')
+  }
+
   return (
     <nav className="slim-nav">
       <div className="slim-nav-items">
@@ -118,63 +188,6 @@ export default function IconNav() {
         >
           <MessageIcon size={24} />
           <span className="slim-nav-label">DMs</span>
-          
-          {hoveredItem === 'dms' && (
-            <div className="more-popup" onClick={handlePopupClick}>
-              <div className="dm-hover-card">
-                <div className="dm-hover-header">
-                  <div className="dm-hover-title">Direct messages</div>
-                  <div className="dm-hover-toggle">
-                    <span className="dm-hover-toggle-label">Unread messages</span>
-                    <label className="toggle-switch">
-                      <input 
-                        type="checkbox" 
-                        checked={unreadMessagesOnly}
-                        onChange={() => setUnreadMessagesOnly(!unreadMessagesOnly)}
-                      />
-                      <span className="toggle-switch-slider"></span>
-                    </label>
-                  </div>
-                </div>
-                <div className="dm-hover-notice-box">
-                  <UserPlus size={20} className="dm-hover-notice-icon" />
-                  <div className="dm-hover-notice-text">
-                    <strong>Anyone missing?</strong> Add your whole team and get the conversation started.
-                  </div>
-                </div>
-                <button className="dm-hover-button">Add colleagues</button>
-                <div className="dm-hover-list">
-                  <div className="dm-hover-item">
-                    <div className="dm-hover-avatar" style={{background: '#1264a3'}}>
-                      W
-                      <div className="dm-hover-status"></div>
-                    </div>
-                    <div className="dm-hover-info">
-                      <div className="dm-hover-name">Abhimanyu Negi <span>(you)</span></div>
-                      <div className="dm-hover-preview">You: hello</div>
-                    </div>
-                    <div className="dm-hover-time">15:37</div>
-                  </div>
-                  <div className="dm-hover-item">
-                    <div className="dm-hover-avatar">
-                      <img src="https://via.placeholder.com/36" alt="Harsh Paliwal" />
-                      <div className="dm-hover-status"></div>
-                    </div>
-                    <div className="dm-hover-info">
-                      <div className="dm-hover-name">Harsh Paliwal</div>
-                      <div className="dm-hover-preview"></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="dm-hover-footer">
-                  <div className="dm-hover-footer-item">
-                    <img src="https://via.placeholder.com/28" alt="Slackbot" className="dm-hover-footer-avatar" />
-                    <span className="dm-hover-footer-name">Slackbot</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
         <div 
@@ -185,41 +198,6 @@ export default function IconNav() {
         >
           <BellIcon size={24} />
           <span className="slim-nav-label">Activity</span>
-          
-          {hoveredItem === 'activity' && (
-            <div className="more-popup" onClick={handlePopupClick}>
-              <div className="activity-hover-card">
-                <div className="activity-hover-header">
-                  <div className="activity-hover-title">Activity</div>
-                  <div className="activity-hover-toggle">
-                    <span className="activity-hover-toggle-label">Unread messages</span>
-                    <label className="toggle-switch">
-                      <input 
-                        type="checkbox" 
-                        checked={unreadActivityOnly}
-                        onChange={() => setUnreadActivityOnly(!unreadActivityOnly)}
-                      />
-                      <span className="toggle-switch-slider"></span>
-                    </label>
-                  </div>
-                </div>
-                <div className="activity-hover-item">
-                  <div className="activity-hover-item-header">
-                    <ChevronRightIcon size={14} className="activity-hover-chevron" />
-                    <span className="activity-hover-type">Workspace invitation</span>
-                    <span className="activity-hover-date">Yesterday</span>
-                  </div>
-                  <div className="activity-hover-item-content">
-                    <img src="https://via.placeholder.com/36" alt="Harsh Paliwal" className="activity-hover-avatar-img" />
-                    <div className="activity-hover-text">
-                      <div className="activity-hover-name">Harsh Paliwal</div>
-                      <div className="activity-hover-message">Accepted your invitation to join Slack – take a second to say hello.</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
         <div 

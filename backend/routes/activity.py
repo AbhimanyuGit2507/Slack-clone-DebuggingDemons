@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from typing import List
 from datetime import datetime, timedelta
 import json
@@ -31,7 +31,7 @@ def get_activities(
     return activities
 
 
-@router.get("/all")
+@router.get("/all", response_model=List[ActivitySchema])
 def get_all_activities(
     skip: int = 0,
     limit: int = 100,
@@ -40,7 +40,7 @@ def get_all_activities(
 ):
     """Get all activities across workspace (for Activity page)"""
     # Get activities from channels user is member of
-    activities = db.query(Activity).order_by(
+    activities = db.query(Activity).options(joinedload(Activity.user)).order_by(
         Activity.created_at.desc()
     ).offset(skip).limit(limit).all()
     
@@ -54,25 +54,52 @@ def get_all_activities(
                 metadata = json.loads(activity.activity_metadata)
             except:
                 pass
-        
-        # Determine content type and ID for navigation
-        content_type = 'dm' if activity.target_type == 'dm' else 'channel'
-        content_id = activity.target_id if activity.target_id else activity.user_id
-        
+
         formatted_activities.append({
             'id': activity.id,
+            'user_id': activity.user_id,
+            'description': activity.description,
+            'metadata': json.dumps(metadata),  # Convert metadata to JSON string
+            'created_at': activity.created_at.isoformat() if activity.created_at else None,
             'user_name': activity.user.username if activity.user else 'Unknown',
             'user': activity.user.username if activity.user else 'Unknown',
             'action': activity.description,
             'activity_type': activity.activity_type,
             'timestamp': activity.created_at.isoformat() if activity.created_at else None,
             'is_read': True,  # Default to read for now
-            'contentType': content_type,
-            'contentId': content_id,
-            'metadata': metadata
+            'contentType': 'dm' if activity.target_type == 'dm' else 'channel',
+            'contentId': activity.target_id if activity.target_id else activity.user_id,
         })
-    
+
     return formatted_activities
+
+
+@router.get("/public")
+def get_public_activities(
+    skip: int = 0,
+    limit: int = 50,
+    db: Session = Depends(get_db)
+):
+    """Get public activities"""
+    activities = db.query(Activity).filter(
+        Activity.is_public == True
+    ).order_by(Activity.created_at.desc()).offset(skip).limit(limit).all()
+
+    return activities
+
+
+@router.get("/public", response_model=List[ActivitySchema])
+def get_public_activities(
+    skip: int = 0,
+    limit: int = 50,
+    db: Session = Depends(get_db)
+):
+    """Get public activities"""
+    activities = db.query(Activity).filter(
+        Activity.is_public == True
+    ).order_by(Activity.created_at.desc()).offset(skip).limit(limit).all()
+
+    return activities
 
 
 # Helper function to create activity logs

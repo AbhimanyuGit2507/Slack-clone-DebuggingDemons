@@ -16,6 +16,9 @@ COPY data/ ./data/
 RUN pip install --no-cache-dir -U pip
 RUN pip install --no-cache-dir -r backend/requirements.txt
 
+# Set PYTHONPATH to ensure modules are discoverable
+ENV PYTHONPATH=/app
+
 # Ensure directories exist for runtime
 RUN mkdir -p /app/data /app/uploads
 

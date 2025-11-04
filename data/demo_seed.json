@@ -635,4 +635,67 @@
       "contact_ids": [1, 2, 3, 4, 7]
     }
   ]
+  ,
+  "activities": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "activity_type": "mention",
+      "description": "michael.chen mentioned you in #development",
+      "target_type": "channel",
+      "target_id": 2,
+      "activity_metadata": { "message_id": 3 },
+      "created_at": "2025-11-03T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "user_id": 4,
+      "activity_type": "dm",
+      "description": "james.rodriguez sent you a direct message",
+      "target_type": "dm",
+      "target_id": 1,
+      "activity_metadata": { "dm_preview": "Can you review the infra change?" },
+      "created_at": "2025-11-03T11:15:00Z"
+    },
+    {
+      "id": 3,
+      "user_id": 3,
+      "activity_type": "reaction",
+      "description": "emma.williams reacted to a message in #general",
+      "target_type": "channel",
+      "target_id": 1,
+      "activity_metadata": { "message_id": 1, "emoji": "👍" },
+      "created_at": "2025-11-03T09:30:00Z"
+    },
+    {
+      "id": 4,
+      "user_id": 7,
+      "activity_type": "channel_joined",
+      "description": "sophia.anderson joined #product-updates",
+      "target_type": "channel",
+      "target_id": 5,
+      "activity_metadata": {},
+      "created_at": "2025-11-02T15:20:00Z"
+    },
+    {
+      "id": 5,
+      "user_id": 1,
+      "activity_type": "file_shared",
+      "description": "sarah.johnson shared a file in #general",
+      "target_type": "channel",
+      "target_id": 1,
+      "activity_metadata": { "attachment_id": 1 },
+      "created_at": "2025-11-01T08:45:00Z"
+    },
+    {
+      "id": 6,
+      "user_id": 6,
+      "activity_type": "reply",
+      "description": "daniel.kim replied to a thread in #development",
+      "target_type": "channel",
+      "target_id": 2,
+      "activity_metadata": { "parent_message_id": 5 },
+      "created_at": "2025-11-03T12:05:00Z"
+    }
+  ]
 }

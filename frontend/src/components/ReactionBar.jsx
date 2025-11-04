@@ -84,6 +84,11 @@ export default function ReactionBar({ messageId, onChange, isHovered = false }){
   }, [])
 
   const addReaction = async (emoji) => {
+    if (!messageId) {
+      console.error('Invalid messageId:', messageId);
+      return;
+    }
+
     try {
       await api.post(`/api/messages/${messageId}/reactions`, { emoji, message_id: messageId })
       await fetchReactions()

@@ -26,7 +26,7 @@ class Settings:
     BCRYPT_ROUNDS: int = 12
     
     # CORS settings
-    CORS_ORIGINS: list = os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")
+    CORS_ORIGINS: list = os.getenv("CORS_ORIGINS", "*").split(",")
     
     # Server settings
     HOST: str = os.getenv("HOST", "0.0.0.0")

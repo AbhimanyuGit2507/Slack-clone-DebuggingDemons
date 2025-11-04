@@ -298,6 +298,7 @@ export default function Canvas({ channelId = null, canvasId = null }) {
             className="canvas-title-input"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            onFocus={() => setTitle('')} // Clear title on focus
             placeholder="Your canvas title"
           />
           <div className="canvas-save-status">

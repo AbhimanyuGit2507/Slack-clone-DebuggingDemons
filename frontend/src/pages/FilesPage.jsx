@@ -188,7 +188,7 @@ export default function FilesPage() {
                         style={{ cursor: isCanvas ? 'pointer' : 'default' }}
                       >
                         <FileText size={16} />
-                        <span>{file.title || file.file_name || file.name || 'Untitled'}</span>
+                        <span>{file.title || file_file_name || file.name || 'Untitled'}</span>
                       </div>
                     )
                   })}
