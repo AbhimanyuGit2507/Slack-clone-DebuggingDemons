@@ -1,6 +1,6 @@
 """Migration script to add is_system_message column to messages table"""
 from sqlalchemy import text
-from database import engine
+from backend.database import engine
 
 def add_system_message_column():
     with engine.connect() as conn:

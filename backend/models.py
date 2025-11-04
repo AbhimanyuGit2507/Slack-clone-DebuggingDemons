@@ -5,7 +5,10 @@ from datetime import datetime
 try:
     from .database import Base
 except ImportError:
-    from database import Base
+    # When executed without package context (e.g., python backend/models.py),
+    # import the package-qualified module so the import still succeeds when
+    # the repository root is on sys.path.
+    from backend.database import Base
 
 channel_members = Table(
     'channel_members', Base.metadata,

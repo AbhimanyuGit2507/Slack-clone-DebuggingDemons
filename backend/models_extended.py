@@ -5,7 +5,7 @@ from datetime import datetime
 try:
     from .database import Base
 except ImportError:
-    from database import Base
+    from backend.database import Base
 
 class Notification(Base):
     __tablename__ = 'notifications'
