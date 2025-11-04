@@ -33,9 +33,9 @@ This uses images published by the CI workflow in this repository. Replace the ow
 
 Commands:
 ```powershell
-# Pull images
-docker pull ghcr.io/AbhimanyuGit2507/slack-backend:latest
-docker pull ghcr.io/AbhimanyuGit2507/slack-frontend:latest
+# Pull images (replace the owner if your repository uses a different name)
+docker pull ghcr.io/abhimanyugit2507/slack-backend:latest
+docker pull ghcr.io/abhimanyugit2507/slack-frontend:latest
 
 # Start using the helper compose file
 docker compose -f docker-compose.images.yml up -d

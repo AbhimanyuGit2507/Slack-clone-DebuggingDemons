@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: ghcr.io/AbhimanyuGit2507/slack-backend:latest
+    image: ghcr.io/abhimanyugit2507/slack-backend:latest
     container_name: slack-backend
     restart: unless-stopped
     volumes:
@@ -14,7 +14,7 @@ services:
       - PORT=8000
 
   frontend:
-    image: ghcr.io/AbhimanyuGit2507/slack-frontend:latest
+    image: ghcr.io/abhimanyugit2507/slack-frontend:latest
     container_name: slack-frontend
     restart: unless-stopped
     depends_on:
