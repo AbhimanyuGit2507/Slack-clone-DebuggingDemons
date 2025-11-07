@@ -148,31 +148,8 @@ export default function IconNav() {
         <div 
           className="slim-nav-item"
           onClick={() => handleNavClick('/')}
-          onMouseEnter={(e) => handleMouseEnter('workspace', e)}
-          onMouseLeave={handleMouseLeave}
         >
           <div className="workspace-icon-small">DD</div>
-          
-          {hoveredItem === 'workspace' && (
-            <div className="more-popup" onClick={handlePopupClick}>
-              <div className="workspace-hover-card">
-                <div className="workspace-hover-header">Workspaces</div>
-                <div className="workspace-hover-item workspace-hover-item-active">
-                  <div className="workspace-hover-icon">W</div>
-                  <div className="workspace-hover-details">
-                    <div className="workspace-hover-name">Workspace</div>
-                    <div className="workspace-hover-members">3 members</div>
-                  </div>
-                </div>
-                <div className="workspace-hover-add">
-                  <div className="workspace-hover-add-icon">
-                    <PlusIcon size={20} />
-                  </div>
-                  <div className="workspace-hover-add-text">Add a workspace</div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
         <Link to="/home" className={`slim-nav-item ${location.pathname === '/home' || location.pathname === '/' || location.pathname.startsWith('/channel') ? 'active' : ''}`}>
@@ -209,74 +186,6 @@ export default function IconNav() {
           <FilesIcon size={24} />
           <span className="slim-nav-label">Files</span>
           
-          {hoveredItem === 'files' && (
-            <div className="more-popup" onClick={handlePopupClick}>
-              <div className="files-hover-card">
-                <div className="files-hover-header">Files</div>
-                <div className="files-hover-buttons">
-                  <button className="files-hover-button">
-                    <PlusIcon size={14} />
-                    <span>New canvas</span>
-                  </button>
-                  <button className="files-hover-button">
-                    <PlusIcon size={14} />
-                    <span>New list</span>
-                  </button>
-                </div>
-                <div className="files-hover-list">
-                  <div className="files-hover-item">
-                    <div className="files-hover-icon"><FilesIcon size={20} /></div>
-                    <div className="files-hover-details">
-                      <div className="files-hover-name">Untitled</div>
-                      <div className="files-hover-meta">Updated 1 hour ago</div>
-                    </div>
-                  </div>
-                  <div className="files-hover-item">
-                    <div className="files-hover-icon"><FilesIcon size={20} /></div>
-                    <div className="files-hover-details">
-                      <div className="files-hover-name">Weekly 1:1 <span className="files-hover-badge">Template</span></div>
-                      <div className="files-hover-meta">Updated 2 months ago</div>
-                    </div>
-                  </div>
-                  <div className="files-hover-item">
-                    <div className="files-hover-icon"><FilesIcon size={20} /></div>
-                    <div className="files-hover-details">
-                      <div className="files-hover-name">Channel overview <span className="files-hover-badge">Template</span></div>
-                      <div className="files-hover-meta">Updated 9 months ago</div>
-                    </div>
-                  </div>
-                  <div className="files-hover-item">
-                    <div className="files-hover-icon"><FilesIcon size={20} /></div>
-                    <div className="files-hover-details">
-                      <div className="files-hover-name">Untitled</div>
-                      <div className="files-hover-meta">Updated 20 hours ago</div>
-                    </div>
-                  </div>
-                  <div className="files-hover-item">
-                    <div className="files-hover-icon"><FilesIcon size={20} /></div>
-                    <div className="files-hover-details">
-                      <div className="files-hover-name">Untitled</div>
-                      <div className="files-hover-meta">Updated 20 hours ago</div>
-                    </div>
-                  </div>
-                  <div className="files-hover-item">
-                    <div className="files-hover-icon"><FilesIcon size={20} /></div>
-                    <div className="files-hover-details">
-                      <div className="files-hover-name">Untitled</div>
-                      <div className="files-hover-meta">Updated 23 hours ago</div>
-                    </div>
-                  </div>
-                  <div className="files-hover-item">
-                    <div className="files-hover-icon"><FilesIcon size={20} /></div>
-                    <div className="files-hover-details">
-                      <div className="files-hover-name">To-do list <span className="files-hover-badge">Template</span></div>
-                      <div className="files-hover-meta">Updated 2 months ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
         <div 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Search, X, SlidersHorizontal, Edit, User } from 'lucide-react'
 import api from '../api/axios'
+import { useNavigate } from 'react-router-dom'
 import usePageTitle from '../hooks/usePageTitle'
 import '../styles/DirectoriesPage.css'
 
@@ -10,6 +11,8 @@ const DirectoriesPage = () => {
   const [activeTab, setActiveTab] = useState('people')
   const [searchQuery, setSearchQuery] = useState('')
   const [people, setPeople] = useState([])
+  const [channels, setChannels] = useState([])
+  const [groups, setGroups] = useState([])
   const [loading, setLoading] = useState(true)
   const [showFilters, setShowFilters] = useState(false)
   const [sortBy, setSortBy] = useState('recommended')
@@ -18,6 +21,8 @@ const DirectoriesPage = () => {
   useEffect(() => {
     fetchCurrentUser()
     fetchPeople()
+    fetchChannels()
+    fetchGroups()
   }, [])
 
   const fetchCurrentUser = async () => {
@@ -26,6 +31,26 @@ const DirectoriesPage = () => {
       setCurrentUser(res.data)
     } catch (err) {
       console.error('Error fetching current user:', err)
+    }
+  }
+
+  const fetchChannels = async () => {
+    try {
+      const res = await api.get('/api/channels')
+      setChannels(res.data || [])
+    } catch (err) {
+      console.error('Error fetching channels:', err)
+      setChannels([])
+    }
+  }
+
+  const fetchGroups = async () => {
+    try {
+      const res = await api.get('/api/groups')
+      setGroups(res.data || [])
+    } catch (err) {
+      console.error('Error fetching groups:', err)
+      setGroups([])
     }
   }
 
@@ -48,6 +73,10 @@ const DirectoriesPage = () => {
     person.email.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
+  const filteredChannels = channels.filter(ch => (ch.name || '').toLowerCase().includes(searchQuery.toLowerCase()) || (ch.description || '').toLowerCase().includes(searchQuery.toLowerCase()))
+
+  const filteredGroups = groups.filter(g => (g.name || '').toLowerCase().includes(searchQuery.toLowerCase()) || (g.handle || '').toLowerCase().includes(searchQuery.toLowerCase()))
+
   const isCurrentUser = (userId) => {
     return currentUser && currentUser.id === userId
   }
@@ -64,6 +93,7 @@ const DirectoriesPage = () => {
   const getInitials = (username) => {
     return username.charAt(0).toUpperCase()
   }
+  const navigate = useNavigate()
 
   return (
     <motion.div 
@@ -131,7 +161,7 @@ const DirectoriesPage = () => {
           <input 
             type="text"
             className="dir-search-input"
-            placeholder="Search for people"
+            placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -150,7 +180,7 @@ const DirectoriesPage = () => {
       </div>
 
       {/* Content based on active tab */}
-      {activeTab === 'people' && (
+  {activeTab === 'people' && (
         <>
           {/* Invite Section */}
           <div className="invite-section">
@@ -207,6 +237,7 @@ const DirectoriesPage = () => {
                 <motion.div
                   key={person.id}
                   className="person-card"
+                  onClick={() => navigate(`/dm/${person.id}`)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
@@ -257,30 +288,80 @@ const DirectoriesPage = () => {
 
       {/* Other tabs - placeholder */}
       {activeTab === 'channels' && (
-        <div className="tab-placeholder">
-          <h2>Channels</h2>
-          <p>Browse all channels in your workspace</p>
+        <div className="channels-container" style={{ padding: 24 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+            <h2 style={{ margin: 0, color: '#d1d2d3' }}>All channels</h2>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="sort-select">
+                <option value="recommended">Most recommended</option>
+                <option value="name-asc">Name (A-Z)</option>
+                <option value="name-desc">Name (Z-A)</option>
+              </select>
+            </div>
+          </div>
+
+          {filteredChannels.length === 0 ? (
+            <div className="empty-state">No channels found</div>
+          ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 12 }}>
+              {filteredChannels.map((ch) => {
+                const isJoined = ch.members && Array.isArray(ch.members) && ch.members.find(m => m.id === currentUser?.id)
+                return (
+                  <div key={ch.id} style={{ background: '#0b0c0d', border: '1px solid rgba(255,255,255,0.04)', padding: 12, borderRadius: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => navigate(`/channel/${ch.name}`)}>
+                    <div>
+                      <div style={{ fontSize: 16, fontWeight: 700, color: '#e6e7e8' }}># {ch.name}</div>
+                      <div style={{ color: '#9ea4ac', fontSize: 13 }}>{ch.description || 'No description'}</div>
+                      <div style={{ color: '#9ea4ac', fontSize: 12, marginTop: 6 }}>{(ch.members && ch.members.length) || 0} members · {ch.is_private ? 'Private' : 'Public'}</div>
+                    </div>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      {isJoined ? (
+                        <button className="dir-invite-button" onClick={async (e) => { e.stopPropagation(); try { await api.post(`/api/channels/${ch.id}/leave`); await fetchChannels() } catch(e){ console.error(e); alert('Leave failed') } }}>Leave</button>
+                      ) : (
+                        <button className="dir-invite-button" onClick={async (e) => { e.stopPropagation(); try { await api.post(`/api/channels/${ch.id}/join`); await fetchChannels() } catch(e){ console.error(e); alert('Join failed') } }}>Join</button>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )}
         </div>
       )}
 
       {activeTab === 'groups' && (
-        <div className="tab-placeholder">
-          <h2>User groups</h2>
-          <p>Manage user groups in your workspace</p>
+        <div style={{ padding: 24 }}>
+          <h2 style={{ color: '#d1d2d3' }}>User groups</h2>
+          {filteredGroups.length === 0 ? (
+            <div className="empty-state">No user groups found</div>
+          ) : (
+            <div style={{ display: 'grid', gap: 12 }}>
+              {filteredGroups.map(g => (
+                <div key={g.id} style={{ background: '#0b0c0d', border: '1px solid rgba(255,255,255,0.04)', padding: 12, borderRadius: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: '#e6e7e8' }}>{g.name} <span style={{ color: '#9ea4ac', fontSize: 13 }}>@{g.handle}</span></div>
+                    <div style={{ color: '#9ea4ac', fontSize: 13 }}>{g.description || ''}</div>
+                  </div>
+                  <div>
+                    <button className="dir-invite-button" onClick={() => alert('View members not implemented')}>View members</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
       {activeTab === 'external' && (
-        <div className="tab-placeholder">
-          <h2>External</h2>
-          <p>Manage external connections</p>
+        <div style={{ padding: 24 }}>
+          <h2 style={{ color: '#d1d2d3' }}>External</h2>
+          <p style={{ color: '#9ea4ac' }}>Integrations and external connections will be shown here. This area is a placeholder.</p>
         </div>
       )}
 
       {activeTab === 'invitations' && (
-        <div className="tab-placeholder">
-          <h2>Invitations</h2>
-          <p>Manage pending invitations</p>
+        <div style={{ padding: 24 }}>
+          <h2 style={{ color: '#d1d2d3' }}>Invitations</h2>
+          <p style={{ color: '#9ea4ac' }}>Manage pending invitations. There are no pending invites right now.</p>
         </div>
       )}
     </motion.div>
